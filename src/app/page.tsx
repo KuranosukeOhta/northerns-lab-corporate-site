@@ -8,9 +8,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 pt-16">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40">
+        <section className="w-full py-24 md:py-40 lg:py-48">
           <div className="container px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center space-y-4">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
               <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">Idea to Prototype, Fast.</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 AI時代のユーザー体験を<br />検証するデザインと開発
@@ -32,9 +32,9 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardHeader>
                   <Briefcase className="h-8 w-8 mb-2" />
@@ -76,18 +76,18 @@ export default function Home() {
         </section>
         
         {/* Support Flow Section */}
-        <section className="w-full py-12 md:py-24">
+        <section className="w-full py-16 md:py-28">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">ご支援の流れ</h2>
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">ご支援の流れ</h2>
             {/* ... This would be a more complex component ... */}
             <p className="text-center text-gray-500">（ご支援の流れの図やコンポーネントをここに配置）</p>
           </div>
         </section>
 
         {/* Latest Info Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">最新の情報</h2>
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">最新の情報</h2>
             <div className="max-w-2xl mx-auto">
               <Card>
                 <div className="bg-purple-500 aspect-video rounded-t-lg"></div>
@@ -102,9 +102,9 @@ export default function Home() {
         </section>
 
         {/* FAQ Section */}
-        <section className="w-full py-12 md:py-24">
+        <section className="w-full py-16 md:py-28">
           <div className="container px-4 md:px-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">よくある質問</h2>
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">よくある質問</h2>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>最低契約期間はありますか?</AccordionTrigger>
@@ -129,23 +129,23 @@ export default function Home() {
         </section>
 
         {/* Company Profile Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
           <div className="container px-4 md:px-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">会社概要</h2>
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">会社概要</h2>
             <div className="border-t">
-              <div className="grid grid-cols-3 gap-4 py-4 border-b">
+              <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">会社名</div>
                 <div className="col-span-2">株式会社NorthernsLab (読み方: ノーザンズラボ)</div>
               </div>
-              <div className="grid grid-cols-3 gap-4 py-4 border-b">
+              <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">所在地</div>
                 <div className="col-span-2">〒060-0001 北海道札幌市中央区北1条西1丁目</div>
               </div>
-              <div className="grid grid-cols-3 gap-4 py-4 border-b">
+              <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">資本金</div>
                 <div className="col-span-2">100万円</div>
               </div>
-              <div className="grid grid-cols-3 gap-4 py-4 border-b">
+              <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">事業内容</div>
                 <div className="col-span-2">
                   <ul className="list-disc pl-5">
