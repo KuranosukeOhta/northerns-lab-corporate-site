@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { Button } from "@/components/ui/button";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NorthernsLab",
@@ -23,11 +16,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="ja">
+      <body className={inter.className}>
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
+          <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+            <a className="font-bold text-lg" href="#">
+              NorthernsLab
+            </a>
+            <Button>お問い合わせ</Button>
+          </div>
+        </header>
         {children}
+        <footer className="bg-gray-100 dark:bg-gray-800">
+          <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">
+            <div className="flex flex-col items-center md:items-start">
+              <a className="font-bold text-lg mb-2" href="#">
+                NorthernsLab
+              </a>
+              <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 NorthernsLab Inc. All rights reserved.</p>
+            </div>
+            <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
+              <a className="text-sm hover:underline underline-offset-4" href="#">
+                プレスリリース
+              </a>
+              <a className="text-sm hover:underline underline-offset-4" href="#">
+                お問い合わせ
+              </a>
+            </nav>
+          </div>
+        </footer>
       </body>
     </html>
   );
