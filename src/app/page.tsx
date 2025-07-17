@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Code, Bot, BrainCircuit } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -43,32 +44,32 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <Card>
-                <CardHeader>
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              <Card className="col-span-1 lg:col-span-2">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <BrainCircuit className="h-8 w-8" />
                   <CardTitle>AI開発</CardTitle>
-                  <CardDescription>機械学習モデルの設計・開発</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>最新のAI技術を駆使し、ビジネス課題を解決するカスタムAIを開発します。</p>
+                  <p>最新のAI技術を駆使し、ビジネス課題を解決するカスタムAIを開発します。画像認識、自然言語処理、予測分析など、多様なニーズに対応します。</p>
                 </CardContent>
               </Card>
               <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <Code className="h-8 w-8" />
                   <CardTitle>Webシステム開発</CardTitle>
-                  <CardDescription>高速・高機能なWebアプリケーション</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Next.jsやTypeScriptを活用し、スケーラブルなWebシステムを構築します。</p>
+                  <p>Next.jsやTypeScriptを活用し、高速でスケーラブルなWebシステムを構築します。</p>
                 </CardContent>
               </Card>
               <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <Bot className="h-8 w-8" />
                   <CardTitle>技術コンサルティング</CardTitle>
-                  <CardDescription>DX推進と技術戦略の策定</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>企業の成長を加速させるための技術的なアドバイスとサポートを提供します。</p>
+                  <p>企業のDX推進と技術戦略の策定をサポートします。</p>
                 </CardContent>
               </Card>
             </div>
