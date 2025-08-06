@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { CheckCircle2, Bot, Code, Briefcase } from "lucide-react";
+import { CheckCircle2, Globe, Camera, Code, MessageSquare, Printer } from "lucide-react";
 
 export default function Home() {
   return (
@@ -11,17 +10,17 @@ export default function Home() {
         <section className="w-full py-24 md:py-40 lg:py-48">
           <div className="container px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">Idea to Prototype, Fast.</span>
+              <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">From Ideas to Impact</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-                AI時代のユーザー体験を<br />検証するデザインと開発
+                学生起業家が挑む、<br />多様なプロジェクトで価値を創造
               </h1>
               <div className="flex items-center justify-center gap-2 text-left">
                 <CheckCircle2 className="h-5 w-5 text-green-500" />
-                <p>小さくはじめて、生成AIが必要かどうかも含めた投資効果を検証します</p>
+                <p>小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
               </div>
               <div className="flex items-center justify-center gap-2 text-left">
                 <CheckCircle2 className="h-5 w-5 text-green-500" />
-                <p>既存のユーザーとのハレーションを避ける、滑らかなAI体験をデザインします</p>
+                <p>最新技術と柔軟な発想で、新しい価値を生み出します</p>
               </div>
               <div className="flex gap-4 justify-center pt-4">
                 <Button>お問い合わせ</Button>
@@ -31,44 +30,88 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services Section */}
+        {/* Projects Section */}
         <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業（プロジェクト）一覧</h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <Card>
                 <CardHeader>
-                  <Briefcase className="h-8 w-8 mb-2" />
-                  <CardTitle>プロダクト戦略</CardTitle>
+                  <Globe className="h-8 w-8 mb-2 text-blue-500" />
+                  <CardTitle>TranslateJapan</CardTitle>
+                  <p className="text-sm text-gray-500">多言語コンテンツ制作</p>
                 </CardHeader>
                 <CardContent>
-                  <p>ユーザー便益とビジネスインパクトのトレードオンを考えます。</p>
+                  <p className="mb-3">YouTube動画の翻訳・吹き替えサービス</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• 海外コンテンツの日本語ローカライズ</li>
+                    <li>• 高品質な吹き替え制作</li>
+                    <li>• グローバルコンテンツの日本市場展開支援</li>
+                  </ul>
                 </CardContent>
               </Card>
+              
               <Card>
                 <CardHeader>
-                  <Bot className="h-8 w-8 mb-2" />
-                  <CardTitle>AIワークフロー</CardTitle>
+                  <Camera className="h-8 w-8 mb-2 text-green-500" />
+                  <CardTitle>3D Visualization Services</CardTitle>
+                  <p className="text-sm text-gray-500">空間の可視化</p>
                 </CardHeader>
                 <CardContent>
-                  <p>AIをどう活用すべきか、AIが必要かどうかも含めて検討します。</p>
+                  <p className="mb-3">MatterPortを活用した不動産・施設の3D撮影サービス</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• 関東全域対応</li>
+                    <li>• 高品質な3D空間データ作成</li>
+                    <li>• 不動産業界のデジタル変革をサポート</li>
+                  </ul>
                 </CardContent>
               </Card>
+              
               <Card>
                 <CardHeader>
-                  <Code className="h-8 w-8 mb-2" />
-                  <CardTitle>UI, UXデザイン</CardTitle>
+                  <Code className="h-8 w-8 mb-2 text-purple-500" />
+                  <CardTitle>Local Business DX</CardTitle>
+                  <p className="text-sm text-gray-500">地域企業のデジタル化</p>
                 </CardHeader>
                 <CardContent>
-                  <p>既存のユーザーとのハレーションを避ける、滑らかなAI体験をデザインします。</p>
+                  <p className="mb-3">地域の小規模ビジネス向けウェブ制作・SNS管理</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• HP制作保守</li>
+                    <li>• SNS運用代行</li>
+                    <li>• 3D技術を活用した物件紹介</li>
+                  </ul>
                 </CardContent>
               </Card>
+              
               <Card>
                 <CardHeader>
-                  <CheckCircle2 className="h-8 w-8 mb-2" />
-                  <CardTitle>MVP開発、検証</CardTitle>
+                  <MessageSquare className="h-8 w-8 mb-2 text-orange-500" />
+                  <CardTitle>SNS投稿管理ツール</CardTitle>
+                  <p className="text-sm text-gray-500">ソーシャルメディア運用効率化</p>
                 </CardHeader>
                 <CardContent>
-                  <p>実際のサービスデータを使用した動くプロトタイプでの検証サイクルを回します。</p>
+                  <p className="mb-3">GitHubライクなレビューシステムを持つSNS投稿管理アプリ</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• チーム承認フロー</li>
+                    <li>• 投稿スケジューリング</li>
+                    <li>• 著作権チェック機能</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <Printer className="h-8 w-8 mb-2 text-red-500" />
+                  <CardTitle>CrowdPrinting</CardTitle>
+                  <p className="text-sm text-gray-500">3Dプリンター印刷代行</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-3">3Dプリンターを活用した印刷代行サービス</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• 自動見積もり機能</li>
+                    <li>• プリントパートナー募集</li>
+                    <li>• LINEでの依頼対応</li>
+                  </ul>
                 </CardContent>
               </Card>
             </div>
@@ -101,41 +144,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="w-full py-16 md:py-28">
-          <div className="container px-4 md:px-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">よくある質問</h2>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>最低契約期間はありますか?</AccordionTrigger>
-                <AccordionContent>
-                  1ヶ月ごとのご契約となります。まずは1ヶ月ご契約いただき、想定と違った場合はすぐにご解約いただくことが可能です。
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>どのような支援体制になりますか?</AccordionTrigger>
-                <AccordionContent>
-                  プロジェクトに応じて最適なチームを編成します。Slackでの密な連携や週次の定例ミーティングを通じて、プロジェクトを推進します。
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>生成AIでできそうなことを探しています。壁打ち形式での相談はできますか?</AccordionTrigger>
-                <AccordionContent>
-                  はい、可能です。アイデアの段階からご相談いただき、実現可能性の検討や具体的な企画立案をサポートします。
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
-
         {/* Company Profile Section */}
-        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+        <section className="w-full py-16 md:py-28">
           <div className="container px-4 md:px-6 max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">会社概要</h2>
             <div className="border-t">
               <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">会社名</div>
-                <div className="col-span-2">株式会社NorthernsLab (読み方: ノーザンズラボ)</div>
+                <div className="col-span-2">Northerns株式会社 (読み方: ノーザンズ)</div>
               </div>
               <div className="grid grid-cols-3 gap-4 py-6 border-b">
                 <div className="col-span-1 font-semibold">所在地</div>
@@ -149,9 +165,11 @@ export default function Home() {
                 <div className="col-span-1 font-semibold">事業内容</div>
                 <div className="col-span-2">
                   <ul className="list-disc pl-5">
-                    <li>AIプロダクトの研究および開発</li>
-                    <li>Webシステム開発</li>
-                    <li>技術コンサルティング業務</li>
+                    <li>多言語コンテンツ制作</li>
+                    <li>3D可視化サービス</li>
+                    <li>地域企業向けDX支援</li>
+                    <li>SNS管理ツール開発</li>
+                    <li>3Dプリンター印刷代行</li>
                   </ul>
                 </div>
               </div>

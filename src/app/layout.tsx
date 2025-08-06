@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NorthernsLab",
-  description: "NorthernsLab Corporate Site",
+  title: "Northerns株式会社",
+  description: "Northerns株式会社 Corporate Site",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
           <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
             <a className="font-bold text-lg" href="#">
-              NorthernsLab
+              Northerns株式会社
             </a>
             <Button>お問い合わせ</Button>
           </div>
@@ -31,9 +31,9 @@ export default function RootLayout({
           <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">
             <div className="flex flex-col items-center md:items-start">
               <a className="font-bold text-lg mb-2" href="#">
-                NorthernsLab
+                Northerns株式会社
               </a>
-              <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 NorthernsLab Inc. All rights reserved.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Northerns株式会社 All rights reserved.</p>
             </div>
             <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
               <a className="text-sm hover:underline underline-offset-4" href="#">
