@@ -357,14 +357,14 @@ export default function Home() {
               <div className="bg-gray-800 rounded-2xl p-8 text-white w-full">
                 <h3 className="text-2xl font-bold mb-4">お気軽にご相談ください</h3>
                 <p className="text-gray-200 mb-6">
-                  プロジェクトのご相談や、サービスについてのご質問など、お気軽にお問い合わせください。
+                  プロジェクトのご相談や、サービスについてのご質問など、お気軽にお問い合わせください。<br />
                   専門スタッフが丁寧にご対応いたします。
                 </p>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="font-semibold">24時間以内にご返信</span>
+                  <span className="font-semibold">2~3営業日以内にご返信いたします</span>
                 </div>
               </div>
             </div>
