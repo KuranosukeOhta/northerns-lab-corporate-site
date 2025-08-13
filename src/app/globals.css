@@ -181,4 +181,32 @@
       opacity: 1 !important;
     }
   }
+  
+  /* SVG Mask Fallback - improved */
+  .mask-fallback {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  /* Show fallback if mask is not supported */
+  @supports not (mask: url(#northerns-text-mask)) and not (-webkit-mask: url(#northerns-text-mask)) {
+    .mask-fallback {
+      opacity: 1 !important;
+      position: relative;
+    }
+  }
+  
+  /* Ensure video text is properly centered */
+  .video-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
 }

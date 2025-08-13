@@ -1,60 +1,13 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Globe, Camera, Code, MessageSquare, Printer } from "lucide-react";
-import VideoText from "@/components/VideoText";
+import { Globe, Camera, Code, MessageSquare, Printer } from "lucide-react";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-24 md:py-40 lg:py-48">
-          <div className="container px-4 md:px-6">
-            <div className="max-w-4xl mx-auto text-center space-y-12">
-              
-              {/* Tagline */}
-              <div>
-                <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">
-                  From Ideas to Impact
-                </span>
-              </div>
-              
-              {/* Video Text Component */}
-              <VideoText 
-                text="Northerns." 
-                videoSrc="/background_movie.mp4"
-                className="my-12"
-              />
-              
-              {/* Subtitle */}
-              <div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-900 dark:text-white">
-                  多様なプロジェクトで<br />
-                  新たな価値を創造します
-                </h2>
-              </div>
-              
-              {/* Feature Points */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  <p>小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  <p>最新技術と柔軟な発想で、新しい価値を生み出します</p>
-                </div>
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex gap-4 justify-center pt-4">
-                <Button>お問い合わせ</Button>
-                <Button variant="outline">資料請求</Button>
-              </div>
-              
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* Projects Section */}
         <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
