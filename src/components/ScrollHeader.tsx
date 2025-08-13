@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function ScrollHeader() {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,10 +58,13 @@ export default function ScrollHeader() {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <a className="transition-colors duration-300 hover:opacity-80" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" className="w-8 h-8">
-            <rect width="32" height="32" fill="#000000" rx="4"/>
-            <text x="16" y="22" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="white">N.</text>
-          </svg>
+          <Image 
+            src="/favicon.svg" 
+            alt="Northerns Logo" 
+            width={32} 
+            height={32} 
+            className="w-8 h-8"
+          />
         </a>
         
         <Button 
