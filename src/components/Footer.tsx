@@ -28,7 +28,7 @@ export default function Footer() {
           >
             Northerns株式会社
           </button>
-          <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Northerns株式会社 All rights reserved.</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">© 2025 Northerns株式会社 All rights reserved.</p>
         </div>
         <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
           <button 
