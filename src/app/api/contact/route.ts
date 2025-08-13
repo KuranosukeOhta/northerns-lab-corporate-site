@@ -55,13 +55,6 @@ export async function POST(request: NextRequest) {
         { status: 429 }
       );
     }
-
-    // デバッグ用ログ
-    console.log('=== デバッグ情報開始 ===');
-    console.log('Client IP:', clientIP);
-    console.log('RESEND_API_KEY:', process.env.RESEND_API_KEY ? '設定済み' : '未設定');
-    console.log('RESEND_API_KEY length:', process.env.RESEND_API_KEY?.length);
-    console.log('RESEND_API_KEY prefix:', process.env.RESEND_API_KEY?.substring(0, 10));
     
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEYが設定されていません');
@@ -80,18 +73,13 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    console.log('Resend初期化開始...');
     const resend = new Resend(process.env.RESEND_API_KEY);
-    console.log('Resend初期化完了');
     
     const body = await request.json();
     const { fullName, email, company, service, message, recaptchaToken } = body;
 
-    console.log('受信したデータ:', { fullName, email, company, service, message: message?.substring(0, 50) + '...' });
-
     // 入力バリデーション
     if (!fullName || !email || !service || !message) {
-      console.log('バリデーションエラー: 必須項目が不足');
       return NextResponse.json(
         { error: '必須項目が入力されていません' },
         { status: 400 }
@@ -123,10 +111,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    console.log('メール送信開始...');
-    console.log('送信先:', 'ohta.kura@gmail.com');
-    console.log('送信元:', 'onboarding@resend.dev');
 
     // メール送信
     const { data, error } = await resend.emails.send({
@@ -170,33 +154,20 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error('=== Resend エラー詳細 ===');
-      console.error('Resend error details:', error);
-      console.error('Resend error:', JSON.stringify(error, null, 2));
-      console.error('=== エラー詳細終了 ===');
+      console.error('Resend error:', error);
       return NextResponse.json(
         { error: `メール送信に失敗しました: ${error.message || 'Unknown error'}` },
         { status: 500 }
       );
     }
 
-    console.log('メール送信成功:', data);
-    console.log('=== デバッグ情報終了 ===');
     return NextResponse.json(
-      { message: 'お問い合わせを受け付けました。ありがとうございます。' },
+      { message: 'お問い合わせを受け付けました。2~3営業日以内にご返信いたします。' },
       { status: 200 }
     );
 
   } catch (error) {
-    console.error('=== 例外エラー詳細 ===');
     console.error('Contact API error:', error);
-    console.error('Error type:', typeof error);
-    console.error('Error instanceof Error:', error instanceof Error);
-    if (error instanceof Error) {
-      console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
-    }
-    console.error('=== 例外エラー詳細終了 ===');
     return NextResponse.json(
       { error: `サーバーエラーが発生しました: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
