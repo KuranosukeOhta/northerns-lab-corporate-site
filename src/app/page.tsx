@@ -93,7 +93,7 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
-            <p className="text-center text-gray-900 text-lg py-4"> 
+            <p className="text-center text-gray-900 text-lg py-4 font-semibold"> 
               Projects
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
@@ -186,7 +186,7 @@ export default function Home() {
         {/* Support Flow Section */}
         <section className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
-            <p className="text-center text-gray-900 text-lg py-4"> 
+            <p className="text-center text-gray-900 text-lg py-4 font-semibold"> 
               Support Flow
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
@@ -200,7 +200,7 @@ export default function Home() {
         {/* Latest Info Section */}
         <section id="news" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
-            <p className="text-center text-gray-900 text-lg py-4"> 
+            <p className="text-center text-gray-900 text-lg py-4 font-semibold"> 
               Press Release
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
@@ -222,7 +222,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
-            <p className="text-center text-gray-900 text-lg py-4"> 
+            <p className="text-center text-gray-900 text-lg py-4 font-semibold"> 
               Contact
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
@@ -374,7 +374,7 @@ export default function Home() {
         {/* Company Profile Section */}
         <section className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 max-w-3xl mx-auto relative z-10">
-            <p className="text-center text-gray-900 text-lg py-4"> 
+            <p className="text-center text-gray-900 text-lg py-4 font-semibold"> 
               Company Profile
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
