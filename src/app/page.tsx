@@ -29,10 +29,12 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('フォーム送信開始:', formData);
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
     try {
+      console.log('API呼び出し開始...');
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -41,7 +43,9 @@ export default function Home() {
         body: JSON.stringify(formData),
       });
 
+      console.log('APIレスポンス:', response.status, response.statusText);
       const result = await response.json();
+      console.log('API結果:', result);
 
       if (response.ok) {
         setSubmitStatus({
@@ -56,19 +60,27 @@ export default function Home() {
           service: '',
           message: ''
         });
+        // URLパラメータをクリア
+        window.history.replaceState({}, document.title, window.location.pathname);
+        // 問い合わせセクションの上部にスクロール
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        console.log('フォーム送信成功、リセット完了');
       } else {
         setSubmitStatus({
           type: 'error',
           message: result.error || '送信に失敗しました'
         });
+        console.log('フォーム送信エラー:', result.error);
       }
     } catch (error) {
+      console.error('フォーム送信例外:', error);
       setSubmitStatus({
         type: 'error',
         message: 'ネットワークエラーが発生しました'
       });
     } finally {
       setIsSubmitting(false);
+      console.log('フォーム送信処理完了');
     }
   };
 
@@ -234,7 +246,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="relative w-full py-16 md:py-28 overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
+        <section id="contact" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               お問い合わせ
@@ -243,9 +255,9 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Contact Form */}
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">お問い合わせフォーム</h3>
                 
-                <form className="space-y-6">
+                
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
                       お名前 <span className="text-red-500">*</span>
@@ -333,17 +345,33 @@ export default function Home() {
                   
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-8 rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-8 rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? '送信中...' : '送信する'}
                   </button>
 
+                  {/* 送信状態の表示 */}
                   {submitStatus.type === 'success' && (
-                    <p className="text-green-600 text-center mt-4">{submitStatus.message}</p>
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-green-800 font-medium">{submitStatus.message}</p>
+                      </div>
+                    </div>
                   )}
+                  
                   {submitStatus.type === 'error' && (
-                    <p className="text-red-600 text-center mt-4">{submitStatus.message}</p>
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-red-800 font-medium">{submitStatus.message}</p>
+                      </div>
+                    </div>
                   )}
                 </form>
               </div>
