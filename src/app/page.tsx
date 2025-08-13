@@ -10,9 +10,9 @@ export default function Home() {
         <HeroSection />
 
         {/* Projects Section */}
-        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+        <section id="projects" className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業（プロジェクト）一覧</h2>
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業一覧</h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <Card>
                 <CardHeader>

@@ -6970,10 +6970,6 @@ Lines added: 37, lines removed: 1
 
 ---
 
-
-
----
-
 _**User**_
 
 ヘッダーの表示タイミングは、アニメーション効果を付加
@@ -6996,7 +6992,1188 @@ Read file: src/components/ScrollHeader.tsx
 
 ---
 
+<details><summary>Edit file: src/components/ScrollHeader.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 58, lines removed: 11
+
+```diff
+@@ -1,34 +1,81 @@
+  "use client";
+  
+- import { useState, useEffect } from "react";
++ import { useState, useEffect, useRef } from "react";
+  import { Button } from "@/components/ui/button";
+  
+  export default function ScrollHeader() {
+    const [isVisible, setIsVisible] = useState(false);
++   const [isScrollingUp, setIsScrollingUp] = useState(false);
++   const lastScrollY = useRef(0);
++   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+-       // ヒーローセクションの高さ（100vh）を超えたらヘッダーを表示
+-       const scrollPosition = window.scrollY;
++       const currentScrollY = window.scrollY;
+        const heroHeight = window.innerHeight;
+        
+-       setIsVisible(scrollPosition > heroHeight);
+-     };
++       // ヒーローセクションを超えたかチェック
++       const shouldShow = currentScrollY > heroHeight;
++       
++       // スクロール方向を判定
++       const scrollingUp = currentScrollY < lastScrollY.current;
++       
++       // スクロールタイムアウトをクリア
++       if (scrollTimeout.current) {
++         clearTimeout(scrollTimeout.current);
++       }
++       
++       if (shouldShow) {
++         setIsVisible(true);
++         
++         if (scrollingUp) {
++           // 上スクロール時は即座に表示
++           setIsScrollingUp(true);
++         } else {
++           // 下スクロール時は少し遅延して非表示
++           setIsScrollingUp(false);
++           scrollTimeout.current = setTimeout(() => {
++             if (currentScrollY > heroHeight) {
++               setIsVisible(false);
++             }
++           }, 1000); // 1秒後に非表示
++         }
++       } else {
++         // ヒーローセクション内では非表示
++         setIsVisible(false);
++         setIsScrollingUp(false);
++       }
++       
++       lastScrollY.current = currentScrollY;
++     };
+  
+-     window.addEventListener('scroll', handleScroll);
+-     return () => window.removeEventListener('scroll', handleScroll);
++     window.addEventListener('scroll', handleScroll, { passive: true });
++     return () => {
++       window.removeEventListener('scroll', handleScroll);
++       if (scrollTimeout.current) {
++         clearTimeout(scrollTimeout.current);
++       }
++     };
+    }, []);
+  
+    return (
+      <header 
+-       className={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm transition-all duration-300 ${
+-         isVisible ? 'translate-y-0' : '-translate-y-full'
++       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
++         isVisible 
++           ? 'translate-y-0 opacity-100' 
++           : '-translate-y-full opacity-0'
++       } ${
++         isScrollingUp 
++           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
++           : 'bg-white/80 backdrop-blur-sm'
+        }`}
+      >
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+-         <a className="font-bold text-lg" href="#">
++         <a className="font-bold text-lg transition-colors duration-300 hover:text-blue-600" href="#">
+            Northerns株式会社
+          </a>
+-         <Button>お問い合わせ</Button>
++         <Button className="transition-all duration-300 hover:scale-105">
++           お問い合わせ
++         </Button>
+        </div>
+      </header>
+```
+
+</details>
+
+---
+
+次に、ヒーローセクションを画面の縦幅全体に広げましょう：
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -11,5 +11,5 @@
+  
+    return (
+-     <section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
++     <section className="relative w-full h-screen overflow-hidden">
+        {/* Background Video for entire hero section */}
+        {isClient ? (
+```
+
+</details>
+
+---
+
+ヒーローセクション内のコンテンツを中央に配置するように調整しましょう：
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -31,5 +31,5 @@
+        
+        {/* Content Container */}
+-       <div className="container px-4 md:px-6 relative z-10">
++       <div className="container px-4 md:px-6 relative z-10 h-full flex items-center justify-center">
+          <div className="max-w-5xl mx-auto text-center">
+            
+```
+
+</details>
+
+---
+
+最後に、レイアウトファイルを更新して、新しい`ScrollHeader`コンポーネントを使用するようにしましょう：
+
+
+---
+
+<details><summary>Edit file: src/app/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -2,5 +2,5 @@
+  import { Inter } from "next/font/google";
+  import "./globals.css";
+- import { Button } from "@/components/ui/button";
++ import ScrollHeader from "@/components/ScrollHeader";
+  
+  const inter = Inter({ subsets: ["latin"] });
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: 8
+
+```diff
+@@ -19,12 +19,5 @@
+      <html lang="ja">
+        <body className={inter.className}>
+-         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
+-           <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+-             <a className="font-bold text-lg" href="#">
+-               Northerns株式会社
+-             </a>
+-             <Button>お問い合わせ</Button>
+-           </div>
+-         </header>
++         <ScrollHeader />
+          {children}
+          <footer className="bg-gray-100 dark:bg-gray-800">
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/ScrollHeader.tsx src/components/HeroSection.tsx src/app/layout.tsx | cat
+```
+
+```
+
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 2f06f29..8b8d9b9 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,7 +1,7 @@
+ import type { Metadata } from "next";
+ import { Inter } from "next/font/google";
+ import "./globals.css";
+-import { Button } from "@/components/ui/button";
++import ScrollHeader from "@/components/ScrollHeader";
+ 
+ const inter = Inter({ subsets: ["latin"] });
+ 
+@@ -18,14 +18,7 @@ export default function RootLayout({
+   return (
+     <html lang="ja">
+       <body className={inter.className}>
+-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
+-          <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+-            <a className="font-bold text-lg" href="#">
+-              Northerns株式会社
+-            </a>
+-            <Button>お問い合わせ</Button>
+-          </div>
+-        </header>
++        <ScrollHeader />
+         {children}
+         <footer className="bg-gray-100 dark:bg-gray-800">
+           <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-b
+etween">
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 87f1561..092270e 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -10,49 +10,46 @@ export default function HeroSection() {
+   }, []);
+ 
+   return (
+-    <section className="w-full py-8 md:py-12 lg:py-16">
+-      <div className="container px-4 md:px-6">
++    <section className="relative w-full h-screen overflow-hidden">
++      {/* Background Video for entire hero section */}
++      {isClient ? (
++        <video
++          autoPlay
++          muted
++          loop
++          playsInline
++          className="absolute inset-0 w-full h-full object-cover -z-10"
++        >
++          <source src="/background_movie.mp4" type="video/mp4" />
++        </video>
++      ) : (
++        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo
+-400 -z-10" />
+
++      )}
++      
++      {/* Dark Overlay for Better Text Readability */}
++      <div className="absolute inset-0 bg-black/40 -z-10"></div>
++      
++      {/* Content Container */}
++      <div className="container px-4 md:px-6 relative z-10 h-full flex items-center justify-center">
+         <div className="max-w-5xl mx-auto text-center">
+           
+           {/* From Ideas to Impact */}
+           <div className="mb-4">
+-            <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">
++            <span className="text-sm font-semibold tracking-wide uppercase text-white">
+               From Ideas to Impact
+             </span>
+           </div>
+           
+-          {/* Video Background with White Text Overlay */}
+-          <div className="relative flex justify-center items-center w-full mb-8">
+-            {/* Video Background Container */}
+-            <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center just
+ify-center mx-auto overflow-hidden rounded-lg">
+
+-              {/* Background Video */}
+-              {isClient ? (
+-                <video
+-                  autoPlay
+-                  muted
+-                  loop
+-                  playsInline
+-                  className="absolute inset-0 w-full h-full object-cover"
+-                >
+-                  <source src="/background_movie.mp4" type="video/mp4" />
+-                </video>
+-              ) : (
+-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 t
+o-indigo-400" />
+
+-              )}
+-              
+-              {/* Dark Overlay for Better Text Readability */}
+-              <div className="absolute inset-0 bg-black/30"></div>
+-              
+-              {/* White Text Overlay */}
+-              <h1 className="relative z-10 text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking
+-tighter text-white leading-none drop-shadow-2xl">
+
+-                Northerns.
+-              </h1>
+-            </div>
++          {/* Northerns. Text */}
++          <div className="mb-8">
++            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-wh
+ite leading-none drop-shadow-2xl">
+
++              Northerns.
++            </h1>
+           </div>
+           
+           {/* Subtitle */}
+           <div className="mb-8">
+-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-900 dark:text
+-white">
+
++            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white drop-shadow-
+lg">
+
+               多様なプロジェクトで<br />
+               新たな価値を創造します
+             </h2>
+@@ -61,21 +58,21 @@ export default function HeroSection() {
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+             <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-              <p>小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
++              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++              <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+             <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-              <p>最新技術と柔軟な発想で、新しい価値を生み出します</p>
++              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++              <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+           
+           {/* CTA Buttons */}
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-            <button className="px-8 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transi
+tion-colors">
+
++            <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transi
+tion-colors drop-shadow-lg">
+
+               お問い合わせ
+             </button>
+-            <button className="px-8 py-3 border-2 border-black text-black font-semibold rounded-lg hover:bg-bl
+ack hover:text-white transition-colors">
+
++            <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-wh
+ite hover:text-black transition-colors drop-shadow-lg">
+
+               資料請求
+             </button>
+           </div>
+```
+
+---
+
+完璧です！変更をコミットしましょう：
+
+
+---
+
+```bash
+git add .
+```
+
+---
+
+```bash
+git commit -m "ヒーローセクションを画面縦幅全体に拡張し、スクロール制御ヘッダーを実装"
+```
+
+```
+
+[white-text-version e153f81] ヒーローセクションを画面縦幅全体に拡張し、スクロール制御ヘッダーを実装
+ 4 files changed, 911 insertions(+), 46 deletions(-)
+ create mode 100644 src/components/ScrollHeader.tsx
+```
+
+---
+
+完了しました！ヒーローセクションを画面の縦幅全体に広げ、スクロール制御ヘッダーを実装しました。
+
+## **実装した内容：**
+
+### 1. **ヒーローセクションの画面縦幅全体化**
+```tsx
+// 修正前
+<section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
+
+// 修正後
+<section className="relative w-full h-screen overflow-hidden">
+```
+- `h-screen`で画面の縦幅全体（100vh）を使用
+- コンテンツを中央配置（`flex items-center justify-center`）
+
+### 2. **スクロール制御ヘッダー（ScrollHeader）の作成**
+- **表示タイミング**: ヒーローセクション（100vh）を超えたら表示
+- **スクロール方向判定**: 上スクロール時は即座に表示、下スクロール時は1秒後に非表示
+- **アニメーション効果**: 
+  - `translate-y`と`opacity`の組み合わせ
+  - `duration-500 ease-out`で滑らかな動き
+  - スクロール方向に応じた背景色とシャドウの変化
+
+### 3. **高度なアニメーション効果**
+```tsx
+// 表示/非表示のアニメーション
+className={`... transition-all duration-500 ease-out ${
+  isVisible 
+    ? 'translate-y-0 opacity-100' 
+    : '-translate-y-full opacity-0'
+}`}
+
+// スクロール方向に応じたスタイル変化
+${
+  isScrollingUp 
+    ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+    : 'bg-white/80 backdrop-blur-sm'
+}
+```
+
+### 4. **インタラクティブ要素のアニメーション**
+- **ロゴ**: ホバー時に青色に変化（`hover:text-blue-600`）
+- **ボタン**: ホバー時にスケールアップ（`hover:scale-105`）
+- **背景**: スクロール方向に応じた透明度とブラー効果の変化
+
+### 5. **パフォーマンス最適化**
+- `passive: true`でスクロールイベントを最適化
+- `useRef`でタイムアウトを適切に管理
+- メモリリークを防ぐクリーンアップ処理
+
+## **結果：**
+- ✅ ヒーローセクションが画面縦幅全体を覆う
+- ✅ スクロールするまでヘッダーが非表示
+- ✅ 滑らかなアニメーション効果でヘッダーが表示/非表示
+- ✅ スクロール方向に応じた動的なスタイル変化
+- ✅ より没入感のあるヒーローセクション
+
+これで、ヒーローセクションが画面全体を覆い、スクロールするまでヘッダーが美しくアニメーションしながら表示されるようになりました！
+
+---
+
+_**User**_
+
+
+小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています
+最新技術と柔軟な発想で、新しい価値を生み出します
+
+部分の緑色のポイントを削除
+
+---
+
+_**Assistant**_
+
+緑色のポイント（丸い点）を削除します。特徴ポイントの部分から緑色の丸を除去しましょう。
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 4
+
+```diff
+@@ -58,10 +58,8 @@
+            {/* Feature Points */}
+            <div className="space-y-4 mb-8">
+-             <div className="flex items-center justify-center gap-2">
+-               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++             <div className="flex items-center justify-center">
+                <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+              </div>
+-             <div className="flex items-center justify-center gap-2">
+-               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++             <div className="flex items-center justify-center">
+                <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+              </div>
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx | cat
+```
+
+```
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 092270e..7a1214d 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -57,12 +57,10 @@ export default function HeroSection() {
+           
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+```
+
+---
+
+完了しました！緑色のポイント（丸い点）を削除しました。
+
+## **変更内容：**
+
+### 1. **緑色の丸い点を削除**
+```tsx
+// 修正前
+<div className="flex items-center justify-center gap-2">
+  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+  <p className="text-white drop-shadow-md">...</p>
+</div>
+
+// 修正後
+<div className="flex items-center justify-center">
+  <p className="text-white drop-shadow-md">...</p>
+</div>
+```
+
+### 2. **レイアウトの調整**
+- `gap-2`を削除（緑色の丸とテキストの間隔が不要になったため）
+- テキストのみの中央配置に変更
+
+## **結果：**
+- ✅ 緑色の丸い点（`bg-green-400 rounded-full`）が削除される
+- ✅ テキストのみのシンプルな表示になる
+- ✅ より洗練されたミニマルなデザインになる
+- ✅ 背景動画に映えるクリーンなレイアウトになる
+
+これで特徴ポイントの部分がよりシンプルで洗練された見た目になりました！
+
+---
+
+_**User**_
+
+お問い合わせ
+資料請求
+
+を
+
+事業一覧
+お問い合わせ
+に変更
+
+---
+
+_**Assistant**_
+
+CTAボタンを「事業一覧」と「お問い合わせ」に変更します。
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -69,8 +69,8 @@
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors drop-shadow-lg">
+-               お問い合わせ
++               事業一覧
+              </button>
+              <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors drop-shadow-lg">
+-               資料請求
++               お問い合わせ
+              </button>
+            </div>
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx | cat
+```
+
+```
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 092270e..30469bf 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -57,12 +57,10 @@ export default function HeroSection() {
+           
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+@@ -70,10 +68,10 @@ export default function HeroSection() {
+           {/* CTA Buttons */}
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+             <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transi
+tion-colors drop-shadow-lg">
+
+-              お問い合わせ
++              事業一覧
+             </button>
+             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-wh
+ite hover:text-black transition-colors drop-shadow-lg">
+
+-              資料請求
++              お問い合わせ
+             </button>
+           </div>
+           
+```
+
+---
+
+完了しました！CTAボタンを変更しました。
+
+## **変更内容：**
+
+### 1. **左側のボタン**
+```tsx
+// 修正前
+お問い合わせ
+
+// 修正後
+事業一覧
+```
+
+### 2. **右側のボタン**
+```tsx
+// 修正前
+資料請求
+
+// 修正後
+お問い合わせ
+```
+
+## **結果：**
+- ✅ 左側の白背景ボタンが「事業一覧」に変更
+- ✅ 右側の白枠ボタンが「お問い合わせ」に変更
+- ✅ ボタンのスタイルとアニメーション効果は維持
+- ✅ より適切なナビゲーション構成になる
+
+これで、ユーザーが「事業一覧」を見てから「お問い合わせ」をするという自然な流れのCTAボタンになりました！
+
+---
+
+_**User**_
+
+事業（プロジェクト）一覧
+
+事業一覧
+に変更
+
+---
+
+_**Assistant**_
+
+メインページの「事業（プロジェクト）一覧」を「事業一覧」に変更します。
+
+
+---
+
+<details><summary>Edit file: src/app/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -13,5 +13,5 @@
+          <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+            <div className="container px-4 md:px-6">
+-             <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業（プロジェクト）一覧</h2>
++             <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業一覧</h2>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <Card>
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/app/page.tsx | cat
+```
+
+```
+
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 579b13a..447f3b0 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -12,7 +12,7 @@ export default function Home() {
+         {/* Projects Section */}
+         <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+           <div className="container px-4 md:px-6">
+-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業（プロジェクト）一覧</h2>
+                                                                                                   
++            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業一覧</h2>
+             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+               <Card>
+                 <CardHeader>
+```
+
+---
+
+完了しました！「事業（プロジェクト）一覧」を「事業一覧」に変更しました。
+
+## **変更内容：**
+
+### 1. **セクションタイトルの変更**
+```tsx
+// 修正前
+<h2 className="...">事業（プロジェクト）一覧</h2>
+
+// 修正後
+<h2 className="...">事業一覧</h2>
+```
+
+## **結果：**
+- ✅ セクションタイトルが「事業一覧」に簡潔に変更
+- ✅ ヒーローセクションの「事業一覧」ボタンと一致
+- ✅ より統一感のあるナビゲーション構成になる
+- ✅ シンプルで分かりやすいタイトルになる
+
+これで、ヒーローセクションの「事業一覧」ボタンと、実際のセクションタイトルが一致し、ユーザーにとってより分かりやすい構成になりました！
+
+---
+
+_**User**_
+
+ヒーローの事業一覧ボタンを下の事業一覧にアンカー、アニメーション付き
+
+---
+
+_**Assistant**_
+
+ヒーローセクションの「事業一覧」ボタンに、下の事業一覧セクションへのアンカーリンクとアニメーション付きのスクロール機能を追加します。
+
+まず、事業一覧セクションにIDを追加しましょう：
+
+
+---
+
+<details><summary>Edit file: src/app/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -11,5 +11,5 @@
+  
+          {/* Projects Section */}
+-         <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
++         <section id="projects" className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+            <div className="container px-4 md:px-6">
+              <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業一覧</h2>
+```
+
+</details>
+
+---
+
+次に、ヒーローセクションの「事業一覧」ボタンにアンカーリンクとアニメーション付きスクロール機能を追加します：
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 1
+
+```diff
+@@ -68,5 +68,16 @@
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-             <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors drop-shadow-lg">
++             <button 
++               onClick={() => {
++                 const element = document.getElementById('projects');
++                 if (element) {
++                   element.scrollIntoView({ 
++                     behavior: 'smooth',
++                     block: 'start'
++                   });
++                 }
++               }}
++               className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer"
++             >
+                事業一覧
+              </button>
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx src/app/page.tsx | cat
+```
+
+```
+
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 579b13a..400ddde 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -10,9 +10,9 @@ export default function Home() {
+         <HeroSection />
+ 
+         {/* Projects Section */}
+-        <section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
++        <section id="projects" className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+           <div className="container px-4 md:px-6">
+-            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業（プロジェクト）一覧</h2>
+                                                                                                   
++            <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">事業一覧</h2>
+             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+               <Card>
+                 <CardHeader>
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 092270e..4e470bf 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -57,23 +57,32 @@ export default function HeroSection() {
+           
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+           
+           {/* CTA Buttons */}
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-            <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transi
+tion-colors drop-shadow-lg">
+
+-              お問い合わせ
++            <button 
++              onClick={() => {
++                const element = document.getElementById('projects');
++                if (element) {
++                  element.scrollIntoView({ 
++                    behavior: 'smooth',
++                    block: 'start'
++                  });
++                }
++              }}
++              className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 hover:scale-
+105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer"
+
++            >
++              事業一覧
+             </button>
+             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-wh
+ite hover:text-black transition-colors drop-shadow-lg">
+
+-              資料請求
++              お問い合わせ
+             </button>
+           </div>
+           
+```
+
+---
+
+完璧です！ヒーローセクションの「事業一覧」ボタンにアンカーリンクとアニメーション付きスクロール機能を追加しました。
+
+## **実装した内容：**
+
+### 1. **事業一覧セクションにIDを追加**
+```tsx
+// 修正前
+<section className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+
+// 修正後
+<section id="projects" className="w-full py-16 md:py-28 bg-gray-50 dark:bg-gray-800/50">
+```
+
+### 2. **事業一覧ボタンにクリックイベントを追加**
+```tsx
+<button 
+  onClick={() => {
+    const element = document.getElementById('projects');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }}
+  className="..."
+>
+  事業一覧
+</button>
+```
+
+### 3. **アニメーション効果の強化**
+```tsx
+// 修正前
+className="... hover:bg-gray-100 transition-colors ..."
+
+// 修正後
+className="... hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 ... cursor-pointer"
+```
+
+## **追加された機能：**
+
+### **スクロールアニメーション**
+- `behavior: 'smooth'`: 滑らかなスクロールアニメーション
+- `block: 'start'`: セクションの上部に正確にスクロール
+
+### **ボタンアニメーション**
+- `hover:scale-105`: ホバー時に5%拡大
+- `active:scale-95`: クリック時に5%縮小
+- `transition-all duration-300`: すべてのプロパティに300msのアニメーション
+- `cursor-pointer`: クリック可能であることを明示
+
+## **結果：**
+- ✅ ヒーローセクションの「事業一覧」ボタンをクリックすると、下の事業一覧セクションに滑らかにスクロール
+- ✅ ボタンにホバー・クリック時のアニメーション効果を追加
+- ✅ よりインタラクティブで魅力的なユーザーエクスペリエンス
+- ✅ ナビゲーションの使いやすさが向上
+
+これで、ユーザーがヒーローセクションから事業一覧セクションまで、美しいアニメーション付きでスムーズに移動できるようになりました！
+
+---
+
+_**User**_
+
+事業一覧ボタンのホバー時は70％背景ぼかし
+
+---
+
+_**Assistant**_
+
+事業一覧ボタンのホバー時に70%の背景ぼかし効果を追加します。
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -78,5 +78,5 @@
+                  }
+                }}
+-               className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer"
++               className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/70 hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer backdrop-blur-sm"
+              >
+                事業一覧
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx | cat
+```
+
+```
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 092270e..d03f08d 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -57,23 +57,32 @@ export default function HeroSection() {
+           
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+-            <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++            <div className="flex items-center justify-center">
+               <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+           
+           {/* CTA Buttons */}
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-            <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transi
+tion-colors drop-shadow-lg">
+
+-              お問い合わせ
++            <button 
++              onClick={() => {
++                const element = document.getElementById('projects');
++                if (element) {
++                  element.scrollIntoView({ 
++                    behavior: 'smooth',
++                    block: 'start'
++                  });
++                }
++              }}
++              className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/70 hover:scale-
+105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer backdrop-blur-sm"
+
++            >
++              事業一覧
+             </button>
+             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-wh
+ite hover:text-black transition-colors drop-shadow-lg">
+
+-              資料請求
++              お問い合わせ
+             </button>
+           </div>
+           
+```
+
+---
+
+完了しました！事業一覧ボタンのホバー時に70%の背景ぼかし効果を追加しました。
+
+## **変更内容：**
+
+### 1. **ホバー時の背景色を変更**
+```tsx
+// 修正前
+hover:bg-gray-100
+
+// 修正後
+hover:bg-white/70
+```
+- `bg-white/70`で白の70%透明度に設定
+
+### 2. **背景ぼかし効果を追加**
+```tsx
+// 修正前
+className="... cursor-pointer"
+
+// 修正後
+className="... cursor-pointer backdrop-blur-sm"
+```
+- `backdrop-blur-sm`で背景にぼかし効果を追加
+
+## **結果：**
+- ✅ ホバー時に背景が70%の透明度になる
+- ✅ 背景動画が透けて見える美しい効果
+- ✅ `backdrop-blur-sm`で背景に軽いぼかし効果
+- ✅ より洗練されたビジュアルデザイン
+- ✅ 背景動画との調和が向上
+
+これで、事業一覧ボタンにホバーした際に、背景動画が美しく透けて見える70%の背景ぼかし効果が適用されます！
+
+---
+
+_**User**_
+
+hover:scale-105 active:scale-95 transition-all duration-300 同様のアニメーション効果をお問い合わせボタンにも適用
+
+---
+
+_**Assistant**_
+
+お問い合わせボタンにも同様のアニメーション効果を適用します。
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -82,5 +82,5 @@
+                事業一覧
+              </button>
+-             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors drop-shadow-lg">
++             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer">
+                お問い合わせ
+              </button>
+```
+
+</details>
 
 ---
 
