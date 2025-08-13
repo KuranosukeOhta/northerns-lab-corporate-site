@@ -103,12 +103,12 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
               <a href="https://matterport-service-hp.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full group" aria-label="3D Visualization Services を新しいタブで開く">
                 <Card className="relative overflow-hidden bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
-                  <CardHeader className="transition-all duration-300 group-hover:blur-sm">
+                  <CardHeader className="transition-all duration-300 group-hover:blur-[2px]">
                     <Camera className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">3D Visualization Services</CardTitle>
                     <p className="text-sm text-gray-600">空間の可視化</p>
                   </CardHeader>
-                  <CardContent className="transition-all duration-300 group-hover:blur-sm">
+                  <CardContent className="transition-all duration-300 group-hover:blur-[2px]">
                     <p className="mb-3 text-gray-800">Matterportを活用した不動産・施設の3Dバーチャルツアー撮影サービス</p>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• 関東全域対応</li>
@@ -116,10 +116,7 @@ export default function Home() {
                       <li>• 不動産業界のデジタル変革をサポート</li>
                     </ul>
                   </CardContent>
-                  <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </div>
-                  <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-900/80 text-white text-xs px-3 py-1.5">
                       <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                       サービスサイトへ
@@ -130,7 +127,7 @@ export default function Home() {
               
               <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full group" aria-label="TranslateJapan を新しいタブで開く">
                 <Card className="relative overflow-hidden bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
-                  <CardHeader className="transition-all duration-300 group-hover:blur-sm">
+                  <CardHeader className="transition-all duration-300 group-hover:blur-[2px]">
                     <Globe className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
                     <p className="text-sm text-gray-600">多言語コンテンツ制作</p>
@@ -143,10 +140,7 @@ export default function Home() {
                       <li>• グローバルコンテンツの日本市場展開支援</li>
                     </ul>
                   </CardContent>
-                  <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </div>
-                  <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-900/80 text-white text-xs px-3 py-1.5">
                       <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                       サービスサイトへ
