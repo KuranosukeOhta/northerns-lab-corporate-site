@@ -116,21 +116,23 @@ export default function Home() {
                 </CardContent>
               </Card>
               
-              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
-                <CardHeader>
-                  <Globe className="h-8 w-8 mb-2 text-black" />
-                  <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
-                  <p className="text-sm text-gray-600">多言語コンテンツ制作</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-3 text-gray-800">YouTube動画の翻訳・吹き替えサービス</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• 海外コンテンツの日本語ローカライズ</li>
-                    <li>• 高品質な吹き替え制作</li>
-                    <li>• グローバルコンテンツの日本市場展開支援</li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+                  <CardHeader>
+                    <Globe className="h-8 w-8 mb-2 text-black" />
+                    <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
+                    <p className="text-sm text-gray-600">多言語コンテンツ制作</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-3 text-gray-800">YouTube動画の翻訳・吹き替えサービス</p>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• 海外コンテンツの日本語ローカライズ</li>
+                      <li>• 高品質な吹き替え制作</li>
+                      <li>• グローバルコンテンツの日本市場展開支援</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </a>
               
               <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
                 <CardHeader>
@@ -212,7 +214,7 @@ export default function Home() {
                 <CardContent className="p-6">
                   <p className="text-sm text-gray-500 mb-2">2025.01.14</p>
                   <h3 className="text-xl font-bold mb-2 text-gray-900">仮のタイトル：AI活用事例のご紹介</h3>
-                  <p className="text-gray-700">仮の説明文：AI技術を活用したプロジェクトの事例や、企業のデジタル変革支援についてご紹介いたします。具体的な内容は後日更新予定です。</p>
+                  <p className="text-gray-700">AI技術を活用したプロジェクトの事例や、企業のデジタル変革支援についてご紹介いたします。</p>
                 </CardContent>
               </Card>
             </div>
