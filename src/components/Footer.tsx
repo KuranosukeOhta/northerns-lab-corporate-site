@@ -11,13 +11,23 @@ export default function Footer() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <footer className="bg-gray-100 dark:bg-gray-800">
       <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">
         <div className="flex flex-col items-center md:items-start">
-          <a className="font-bold text-lg mb-2" href="#">
+          <button 
+            onClick={scrollToTop}
+            className="font-bold text-lg mb-2 cursor-pointer hover:text-blue-600 transition-colors duration-300"
+          >
             Northerns株式会社
-          </a>
+          </button>
           <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Northerns株式会社 All rights reserved.</p>
         </div>
         <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
