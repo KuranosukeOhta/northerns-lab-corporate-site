@@ -93,6 +93,9 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
+            <p className="text-center text-gray-900 text-lg py-4"> 
+              Projects
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               事業一覧
             </h2>
@@ -183,6 +186,9 @@ export default function Home() {
         {/* Support Flow Section */}
         <section className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
+            <p className="text-center text-gray-900 text-lg py-4"> 
+              Support Flow
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               ご支援の流れ
             </h2>
@@ -194,6 +200,9 @@ export default function Home() {
         {/* Latest Info Section */}
         <section id="news" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
+            <p className="text-center text-gray-900 text-lg py-4"> 
+              Latest Info
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               最新の情報
             </h2>
@@ -213,6 +222,9 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
+            <p className="text-center text-gray-900 text-lg py-4"> 
+              Contact
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               お問い合わせ
             </h2>
@@ -362,6 +374,9 @@ export default function Home() {
         {/* Company Profile Section */}
         <section className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 max-w-3xl mx-auto relative z-10">
+            <p className="text-center text-gray-900 text-lg py-4"> 
+              Company Profile
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               会社概要
             </h2>
