@@ -102,6 +102,22 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
                 <CardHeader>
+                  <Camera className="h-8 w-8 mb-2 text-black" />
+                  <CardTitle className="text-gray-900">3D Visualization Services</CardTitle>
+                  <p className="text-sm text-gray-600">空間の可視化</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-3 text-gray-800">Matterportを活用した不動産・施設の3Dバーチャルツアー撮影サービス</p>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• 関東全域対応</li>
+                    <li>• 高品質な3D空間データ作成</li>
+                    <li>• 不動産業界のデジタル変革をサポート</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+                <CardHeader>
                   <Globe className="h-8 w-8 mb-2 text-black" />
                   <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
                   <p className="text-sm text-gray-600">多言語コンテンツ制作</p>
@@ -112,22 +128,6 @@ export default function Home() {
                     <li>• 海外コンテンツの日本語ローカライズ</li>
                     <li>• 高品質な吹き替え制作</li>
                     <li>• グローバルコンテンツの日本市場展開支援</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
-                <CardHeader>
-                  <Camera className="h-8 w-8 mb-2 text-black" />
-                  <CardTitle className="text-gray-900">3D Visualization Services</CardTitle>
-                  <p className="text-sm text-gray-600">空間の可視化</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-3 text-gray-800">MatterPortを活用した不動産・施設の3D撮影サービス</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• 関東全域対応</li>
-                    <li>• 高品質な3D空間データ作成</li>
-                    <li>• 不動産業界のデジタル変革をサポート</li>
                   </ul>
                 </CardContent>
               </Card>
