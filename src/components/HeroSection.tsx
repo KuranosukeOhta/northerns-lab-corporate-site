@@ -43,7 +43,7 @@ export default function HeroSection() {
           {/* Northerns. Text */}
           <div className="mb-8">
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer">
-              Northerns<span className="animate-blink">.</span>
+              Northerns.
             </h1>
           </div>
           
