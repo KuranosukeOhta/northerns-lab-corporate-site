@@ -7,7 +7,6 @@ export default function ScrollHeader() {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const lastScrollY = useRef(0);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,10 +19,7 @@ export default function ScrollHeader() {
       // スクロール方向を判定
       const scrollingUp = currentScrollY < lastScrollY.current;
       
-      // スクロールタイムアウトをクリア
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
+
       
       if (shouldShow) {
         setIsVisible(true);
@@ -32,13 +28,9 @@ export default function ScrollHeader() {
           // 上スクロール時は即座に表示
           setIsScrollingUp(true);
         } else {
-          // 下スクロール時は少し遅延して非表示
+          // 下スクロール時は即座に非表示
           setIsScrollingUp(false);
-          scrollTimeout.current = setTimeout(() => {
-            if (currentScrollY > heroHeight) {
-              setIsVisible(false);
-            }
-          }, 1000); // 1秒後に非表示
+          setIsVisible(false);
         }
       } else {
         // ヒーローセクション内では非表示
@@ -52,9 +44,6 @@ export default function ScrollHeader() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
     };
   }, []);
 
