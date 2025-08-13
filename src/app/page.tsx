@@ -192,7 +192,7 @@ export default function Home() {
         </section>
 
         {/* Latest Info Section */}
-        <section className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
+        <section id="news" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               最新の情報
