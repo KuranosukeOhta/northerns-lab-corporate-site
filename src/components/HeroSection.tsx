@@ -1,30 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// クライアントサイドのみでレンダリングされるコンポーネント
+const ClientOnlyVideo = dynamic(() => Promise.resolve(() => (
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover -z-10"
+  >
+    <source src="/background_movie.mp4" type="video/mp4" />
+  </video>
+)), { ssr: false });
 
 export default function HeroSection() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Video for entire hero section */}
-      {isClient ? (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-        >
-          <source src="/background_movie.mp4" type="video/mp4" />
-        </video>
-      ) : (
-        <div className="absolute inset-0 w-full h-full bg-white -z-10" />
-      )}
+      <ClientOnlyVideo />
       
       {/* Dark Overlay for Better Text Readability */}
       <div className="absolute inset-0 bg-black/40 -z-10"></div>
