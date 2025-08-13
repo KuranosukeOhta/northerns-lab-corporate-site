@@ -100,9 +100,9 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               事業一覧
             </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <a href="https://matterport-service-hp.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+              <a href="https://matterport-service-hp.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full">
+                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
                   <CardHeader>
                     <Camera className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">3D Visualization Services</CardTitle>
@@ -119,8 +119,8 @@ export default function Home() {
                 </Card>
               </a>
               
-              <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+              <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full">
+                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
                   <CardHeader>
                     <Globe className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
@@ -137,7 +137,7 @@ export default function Home() {
                 </Card>
               </a>
               
-              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
                 <CardHeader>
                   <Code className="h-8 w-8 mb-2 text-black" />
                   <CardTitle className="text-gray-900">Local Business DX</CardTitle>
@@ -153,7 +153,7 @@ export default function Home() {
                 </CardContent>
               </Card>
               
-              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
                 <CardHeader>
                   <MessageSquare className="h-8 w-8 mb-2 text-black" />
                   <div className="flex items-center gap-2">
@@ -172,7 +172,7 @@ export default function Home() {
                 </CardContent>
               </Card>
               
-              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
+              <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
                 <CardHeader>
                   <Printer className="h-8 w-8 mb-2 text-black" />
                   <div className="flex items-center gap-2">
