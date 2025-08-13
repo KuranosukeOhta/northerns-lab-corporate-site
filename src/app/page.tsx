@@ -119,6 +119,12 @@ export default function Home() {
                   <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </div>
+                  <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-900/80 text-white text-xs px-3 py-1.5">
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                      サービスサイトへ
+                    </span>
+                  </div>
                 </Card>
               </a>
               
@@ -139,6 +145,12 @@ export default function Home() {
                   </CardContent>
                   <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-900/80 text-white text-xs px-3 py-1.5">
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                      サービスサイトへ
+                    </span>
                   </div>
                 </Card>
               </a>
