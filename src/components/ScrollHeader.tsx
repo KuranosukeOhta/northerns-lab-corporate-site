@@ -71,42 +71,6 @@ export default function ScrollHeader() {
           Northerns株式会社
         </a>
         
-        {/* Navigation Menu */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <a 
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.getElementById('projects');
-              if (element) {
-                element.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
-            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium"
-          >
-            事業一覧
-          </a>
-          <a 
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
-            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium"
-          >
-            お問い合わせ
-          </a>
-        </nav>
-        
         <Button 
           onClick={() => {
             const element = document.getElementById('contact');
