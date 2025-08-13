@@ -42,8 +42,8 @@ export default function HeroSection() {
           
           {/* Northerns. Text */}
           <div className="mb-8">
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl hover:scale-110 hover:backdrop-blur-sm transition-all duration-500 ease-out cursor-pointer">
-              Northerns.
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer">
+              Northerns<span className="animate-blink">.</span>
             </h1>
           </div>
           
@@ -56,12 +56,12 @@ export default function HeroSection() {
           </div>
           
           {/* Feature Points */}
-          <div className="space-y-4 mb-8">
+          <div className="mb-8">
             <div className="flex items-center justify-center">
-              <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
-            </div>
-            <div className="flex items-center justify-center">
-              <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+              <p className="text-white drop-shadow-md text-center">
+                小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています<br />
+                最新技術と柔軟な発想で、新しい価値を生み出します
+              </p>
             </div>
           </div>
           
@@ -77,11 +77,11 @@ export default function HeroSection() {
                   });
                 }
               }}
-              className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/70 hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer backdrop-blur-sm"
+              className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/70 hover:text-black hover:backdrop-blur-sm hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer"
             >
               事業一覧
             </button>
-            <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer">
+            <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/70 hover:text-black hover:backdrop-blur-sm hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer">
               お問い合わせ
             </button>
           </div>
