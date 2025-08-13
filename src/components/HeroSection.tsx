@@ -23,7 +23,7 @@ export default function HeroSection() {
           <source src="/background_movie.mp4" type="video/mp4" />
         </video>
       ) : (
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 -z-10" />
+        <div className="absolute inset-0 w-full h-full bg-white -z-10" />
       )}
       
       {/* Dark Overlay for Better Text Readability */}
