@@ -54,8 +54,8 @@ export default function HeroSection() {
           <div className="mb-8">
             <div className="flex items-center justify-center">
               <p className="text-white drop-shadow-md text-center">
-                小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています<br />
-                最新技術と柔軟な発想で、新しい価値を生み出します
+                小さく始めて、大きく育てる。<br />
+                最新技術と柔軟な発想で、新しい価値を生み出します。
               </p>
             </div>
           </div>
