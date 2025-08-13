@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Camera, Code, MessageSquare, Printer } from "lucide-react";
+import { Globe, Camera, Code, MessageSquare, Printer, ExternalLink } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
@@ -101,14 +101,14 @@ export default function Home() {
               事業一覧
             </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
-              <a href="https://matterport-service-hp.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full">
-                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
-                  <CardHeader>
+              <a href="https://matterport-service-hp.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full group" aria-label="3D Visualization Services を新しいタブで開く">
+                <Card className="relative overflow-hidden bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
+                  <CardHeader className="transition-all duration-300 group-hover:blur-sm">
                     <Camera className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">3D Visualization Services</CardTitle>
                     <p className="text-sm text-gray-600">空間の可視化</p>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="transition-all duration-300 group-hover:blur-sm">
                     <p className="mb-3 text-gray-800">Matterportを活用した不動産・施設の3Dバーチャルツアー撮影サービス</p>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• 関東全域対応</li>
@@ -116,17 +116,20 @@ export default function Home() {
                       <li>• 不動産業界のデジタル変革をサポート</li>
                     </ul>
                   </CardContent>
+                  <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </div>
                 </Card>
               </a>
               
-              <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full">
-                <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
-                  <CardHeader>
+              <a href="https://translate-japan.vercel.app/" target="_blank" rel="noopener noreferrer" className="block h-full group" aria-label="TranslateJapan を新しいタブで開く">
+                <Card className="relative overflow-hidden bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer h-full">
+                  <CardHeader className="transition-all duration-300 group-hover:blur-sm">
                     <Globe className="h-8 w-8 mb-2 text-black" />
                     <CardTitle className="text-gray-900">TranslateJapan</CardTitle>
                     <p className="text-sm text-gray-600">多言語コンテンツ制作</p>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="transition-all duration-300 group-hover:blur-sm">
                     <p className="mb-3 text-gray-800">YouTube動画の翻訳・吹き替えサービス</p>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• 海外コンテンツの日本語ローカライズ</li>
@@ -134,6 +137,9 @@ export default function Home() {
                       <li>• グローバルコンテンツの日本市場展開支援</li>
                     </ul>
                   </CardContent>
+                  <div className="absolute top-3 right-3 rounded-full bg-white/90 text-gray-800 p-1.5 shadow border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </div>
                 </Card>
               </a>
               
@@ -222,7 +228,7 @@ export default function Home() {
                 <div className="bg-gray-500 aspect-video rounded-t-lg"></div>
                 <CardContent className="p-6">
                   <p className="text-sm text-gray-500 mb-2">2025.01.14</p>
-                  <h3 className="text-xl font-bold mb-2 text-gray-900">仮のタイトル：AI活用事例のご紹介</h3>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">AI活用事例のご紹介</h3>
                   <p className="text-gray-700">AI技術を活用したプロジェクトの事例や、企業のデジタル変革支援についてご紹介いたします。</p>
                 </CardContent>
               </Card>
