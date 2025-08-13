@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Northerns株式会社",
-  description: "Northerns株式会社 Corporate Site",
+  description: "多様なプロジェクトで、新たな価値を創造します。",
 };
 
 export default function RootLayout({
