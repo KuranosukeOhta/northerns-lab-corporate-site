@@ -81,7 +81,18 @@ export default function HeroSection() {
             >
               事業一覧
             </button>
-            <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-transparent hover:backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer">
+            <button 
+              onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) {
+                  element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }}
+              className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-transparent hover:backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 drop-shadow-lg cursor-pointer"
+            >
               お問い合わせ
             </button>
           </div>

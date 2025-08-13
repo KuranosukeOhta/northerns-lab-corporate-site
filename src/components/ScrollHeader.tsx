@@ -70,7 +70,55 @@ export default function ScrollHeader() {
         <a className="font-bold text-lg transition-colors duration-300 hover:text-blue-600" href="#">
           Northerns株式会社
         </a>
-        <Button className="transition-all duration-300 hover:scale-105">
+        
+        {/* Navigation Menu */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <a 
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('projects');
+              if (element) {
+                element.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium"
+          >
+            事業一覧
+          </a>
+          <a 
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium"
+          >
+            お問い合わせ
+          </a>
+        </nav>
+        
+        <Button 
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }}
+          className="transition-all duration-300 hover:scale-105"
+        >
           お問い合わせ
         </Button>
       </div>
