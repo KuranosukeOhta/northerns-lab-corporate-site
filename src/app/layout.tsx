@@ -29,10 +29,10 @@ export default function RootLayout({
               <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Northerns株式会社 All rights reserved.</p>
             </div>
             <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
-              <a className="text-sm hover:underline underline-offset-4" href="#news">
+              <a className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 ease-in-out transform hover:-translate-y-1" href="#news">
                 プレスリリース
               </a>
-              <a className="text-sm hover:underline underline-offset-4" href="#contact">
+              <a className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 ease-in-out transform hover:-translate-y-1" href="#contact">
                 お問い合わせ
               </a>
             </nav>
