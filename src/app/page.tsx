@@ -201,7 +201,7 @@ export default function Home() {
         <section id="news" className="relative w-full py-16 md:py-28 overflow-hidden bg-white">
           <div className="container px-4 md:px-6 relative z-10">
             <p className="text-center text-gray-900 text-lg py-4"> 
-              Latest Info
+              Press Release
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
               最新の情報

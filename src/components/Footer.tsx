@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start">
           <button 
             onClick={scrollToTop}
-            className="font-bold text-lg mb-2 cursor-pointer hover:text-blue-600 transition-colors duration-300"
+            className="font-bold text-lg mb-2 cursor-pointer"
           >
             Northerns株式会社
           </button>
