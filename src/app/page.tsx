@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Globe, Camera, Code, MessageSquare, Printer } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 
@@ -155,7 +156,10 @@ export default function Home() {
               <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
                 <CardHeader>
                   <MessageSquare className="h-8 w-8 mb-2 text-black" />
-                  <CardTitle className="text-gray-900">SNS投稿管理ツール</CardTitle>
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-gray-900">SNS投稿管理ツール</CardTitle>
+                    <Badge variant="secondary">開発中</Badge>
+                  </div>
                   <p className="text-sm text-gray-600">ソーシャルメディア運用効率化</p>
                 </CardHeader>
                 <CardContent>
@@ -171,7 +175,10 @@ export default function Home() {
               <Card className="bg-white border-2 border-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer">
                 <CardHeader>
                   <Printer className="h-8 w-8 mb-2 text-black" />
-                  <CardTitle className="text-gray-900">CrowdPrinting</CardTitle>
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-gray-900">CrowdPrinting</CardTitle>
+                    <Badge variant="secondary">開発中</Badge>
+                  </div>
                   <p className="text-sm text-gray-600">3Dプリンター印刷代行</p>
                 </CardHeader>
                 <CardContent>
