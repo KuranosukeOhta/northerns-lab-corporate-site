@@ -387,7 +387,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-3 gap-4 py-6 border-b border-gray-300">
                 <div className="col-span-1 font-semibold text-gray-900">所在地</div>
-                <div className="col-span-2 text-gray-700">〒060-0001 北海道札幌市中央区北1条西1丁目</div>
+                <div className="col-span-2 text-gray-700">北海道札幌市</div>
               </div>
               <div className="grid grid-cols-3 gap-4 py-6 border-b border-gray-300">
                 <div className="col-span-1 font-semibold text-gray-900">資本金</div>
