@@ -25,10 +25,10 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/40 -z-10"></div>
       
       {/* Left White Band - PC Only */}
-      <div className="hidden md:block absolute left-0 top-0 w-[5px] h-full bg-white z-20"></div>
+      <div className="hidden md:block absolute left-0 top-0 w-[25px] h-full bg-white z-20"></div>
       
       {/* Right White Band - PC Only */}
-      <div className="hidden md:block absolute right-0 top-0 w-[5px] h-full bg-white z-20"></div>
+      <div className="hidden md:block absolute right-0 top-0 w-[25px] h-full bg-white z-20"></div>
       
       {/* Content Container */}
       <div className="container px-4 md:px-6 relative z-10 h-full flex items-center justify-center">
