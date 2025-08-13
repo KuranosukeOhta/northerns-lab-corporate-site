@@ -204,7 +204,7 @@ export default function Home() {
               Press Release
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-center mb-16 text-gray-900">
-              最新の情報
+              最新情報
             </h2>
             <div className="max-w-2xl mx-auto">
               <Card className="bg-white border-2 border-gray-200 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer">
@@ -229,7 +229,7 @@ export default function Home() {
               お問い合わせ
             </h2>
             
-            <div className="flex flex-col items-center max-w-2xl mx-auto">
+            <div className="flex flex-col items-center max-w-4xl mx-auto">
               {/* Contact Form */}
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 w-full mb-8">
                 
