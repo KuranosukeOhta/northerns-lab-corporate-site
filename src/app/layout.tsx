@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Button } from "@/components/ui/button";
+import ScrollHeader from "@/components/ScrollHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
-          <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-            <a className="font-bold text-lg" href="#">
-              Northerns株式会社
-            </a>
-            <Button>お問い合わせ</Button>
-          </div>
-        </header>
+        <ScrollHeader />
         {children}
         <footer className="bg-gray-100 dark:bg-gray-800">
           <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">

@@ -6212,3 +6212,795 @@ className="... mask-fallback leading-none"
 
 ---
 
+_**User**_
+
+ブランチを分けて、背景が動画、Northerns.は同じ配置で白文字のバージョンも作成してもらえますか？
+
+---
+
+_**Assistant**_
+
+新しいブランチを作成して、背景が動画で「Northerns.」が白文字のバージョンを作成します！
+
+まず新しいブランチを作成しましょう：
+
+
+---
+
+```bash
+git checkout -b white-text-version
+```
+
+```
+(base) ?➜  northerns-lab-corporate-site git:(main) ?✗ git checkout -b white-text-version
+Switched to a new branch 'white-text-version'
+```
+
+---
+
+現在のブランチを確認しましょう：
+
+
+---
+
+```bash
+git branch | cat
+```
+
+```
+(base) ➜  northerns-lab-corporate-site git:(white-text-version) git branch | cat
+  main
+* white-text-version
+```
+
+---
+
+完璧です！新しいブランチ`white-text-version`に切り替わりました。
+
+次に、背景が動画で「Northerns.」が白文字のバージョンを作成します。現在のSVGマスクベースの実装を、背景動画 + 白文字のオーバーレイ方式に変更しましょう：
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 27
+
+```diff
+@@ -22,32 +22,9 @@
+            </div>
+            
+-           {/* Video Text Effect - Fixed SVG Mask */}
++           {/* Video Background with White Text Overlay */}
+            <div className="relative flex justify-center items-center w-full mb-8">
+-             {/* SVG Mask Definition with proper dimensions */}
+-             <svg width="1000" height="400" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '100%', height: 'auto', maxWidth: '100%' }}>
+-               <defs>
+-                 <mask id="northerns-text-mask">
+-                   <rect width="100%" height="100%" fill="black" />
+-                   <text
+-                     x="50%"
+-                     y="50%"
+-                     textAnchor="middle"
+-                     dominantBaseline="middle"
+-                     fill="white"
+-                     style={{ 
+-                       fontSize: '165px',
+-                       fontWeight: 'bold',
+-                       fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+-                       letterSpacing: '-0.02em'
+-                     }}
+-                   >
+-                     Northerns.
+-                   </text>
+-                 </mask>
+-               </defs>
+-             </svg>
+-             
+-             {/* Video Container */}
+-             <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center justify-center mx-auto">
++             {/* Video Background Container */}
++             <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center justify-center mx-auto overflow-hidden rounded-lg">
++               {/* Background Video */}
+                {isClient ? (
+                  <video
+```
+
+**Chunk 2**
+Lines added: 8, lines removed: 15
+
+```diff
+@@ -57,23 +34,16 @@
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+-                   style={{ 
+-                     mask: 'url(#northerns-text-mask)',
+-                     WebkitMask: 'url(#northerns-text-mask)'
+-                   }}
+                  >
+                    <source src="/background_movie.mp4" type="video/mp4" />
+                  </video>
+                ) : (
+-                 <div 
+-                   className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400"
+-                   style={{ 
+-                     mask: 'url(#northerns-text-mask)',
+-                     WebkitMask: 'url(#northerns-text-mask)'
+-                   }} 
+-                 />
+-               )}
+-               
+-               {/* Fallback text */}
+-               <h1 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mask-fallback leading-none">
++                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400" />
++               )}
++               
++               {/* Dark Overlay for Better Text Readability */}
++               <div className="absolute inset-0 bg-black/30"></div>
++               
++               {/* White Text Overlay */}
++               <h1 className="relative z-10 text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl">
+                  Northerns.
+                </h1>
+```
+
+</details>
+
+---
+
+変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx | cat
+```
+
+```
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index b239671..87f1561 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -21,34 +21,11 @@ export default function HeroSection() {
+             </span>
+           </div>
+           
+-          {/* Video Text Effect - Fixed SVG Mask */}
++          {/* Video Background with White Text Overlay */}
+           <div className="relative flex justify-center items-center w-full mb-8">
+-            {/* SVG Mask Definition with proper dimensions */}
+-            <svg width="1000" height="400" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -tr
+anslate-y-1/2 pointer-events-none" style={{ width: '100%', height: 'auto', maxWidth: '100%' }}>
+
+-              <defs>
+-                <mask id="northerns-text-mask">
+-                  <rect width="100%" height="100%" fill="black" />
+-                  <text
+-                    x="50%"
+-                    y="50%"
+-                    textAnchor="middle"
+-                    dominantBaseline="middle"
+-                    fill="white"
+-                    style={{ 
+-                      fontSize: '165px',
+-                      fontWeight: 'bold',
+-                      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+-                      letterSpacing: '-0.02em'
+-                    }}
+-                  >
+-                    Northerns.
+-                  </text>
+-                </mask>
+-              </defs>
+-            </svg>
+-            
+-            {/* Video Container */}
+-            <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center just
+ify-center mx-auto">
+
++            {/* Video Background Container */}
++            <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center just
+ify-center mx-auto overflow-hidden rounded-lg">
+
++              {/* Background Video */}
+               {isClient ? (
+                 <video
+                   autoPlay
+@@ -56,25 +33,18 @@ export default function HeroSection() {
+                   loop
+                   playsInline
+                   className="absolute inset-0 w-full h-full object-cover"
+-                  style={{ 
+-                    mask: 'url(#northerns-text-mask)',
+-                    WebkitMask: 'url(#northerns-text-mask)'
+-                  }}
+                 >
+                   <source src="/background_movie.mp4" type="video/mp4" />
+                 </video>
+               ) : (
+-                <div 
+-                  className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-i
+ndigo-400"
+
+-                  style={{ 
+-                    mask: 'url(#northerns-text-mask)',
+-                    WebkitMask: 'url(#northerns-text-mask)'
+-                  }} 
+-                />
++                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 t
+o-indigo-400" />
+
+               )}
+               
+-              {/* Fallback text */}
+-              <h1 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tigh
+ter bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mask-fallback lea
+ding-none">
+
++              {/* Dark Overlay for Better Text Readability */}
++              <div className="absolute inset-0 bg-black/30"></div>
++              
++              {/* White Text Overlay */}
++              <h1 className="relative z-10 text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking
+-tighter text-white leading-none drop-shadow-2xl">
+
+                 Northerns.
+               </h1>
+             </div>
+```
+
+---
+
+完璧です！変更をコミットしましょう：
+
+
+---
+
+```bash
+git add src/components/HeroSection.tsx
+```
+
+```
+(base) ➜  northerns-lab-corporate-site git:(white-text-version) ✗ git add src/components/HeroSection.tsx
+```
+
+---
+
+```bash
+git commit -m "背景動画 + 白文字オーバーレイ版のヒーローセクションを作成"
+```
+
+```
+<動画 + 白文字オーバーレイ版のヒーローセクションを作成"
+[white-text-version 6d04605] 背景動画 + 白文字オーバーレイ版のヒーローセクションを作成
+ 1 file changed, 10 insertions(+), 40 deletions(-)
+```
+
+---
+
+完了しました！新しいブランチ`white-text-version`で背景動画 + 白文字のバージョンを作成しました。
+
+## **作成した内容：**
+
+### 1. **新しいブランチ**
+- `white-text-version`ブランチを作成・切り替え
+
+### 2. **実装の変更点**
+- **SVGマスク方式** → **背景動画 + 白文字オーバーレイ方式**
+- 複雑なSVGマスクを削除
+- 背景に動画を配置
+- 「Northerns.」を白文字でオーバーレイ表示
+
+### 3. **新しいデザインの特徴**
+- **背景**: 動画（`/background_movie.mp4`）
+- **テキスト**: 白文字（`text-white`）
+- **可読性向上**: 黒い半透明オーバーレイ（`bg-black/30`）
+- **視覚効果**: ドロップシャドウ（`drop-shadow-2xl`）
+- **角丸**: コンテナに角丸（`rounded-lg`）
+
+### 4. **配置の維持**
+- 同じ位置に「Northerns.」を配置
+- 同じフォントサイズ（`text-6xl sm:text-7xl md:text-8xl lg:text-[10rem]`）
+- 同じ間隔設定（`mb-8`）
+
+## **ブランチの切り替え方法：**
+
+**白文字版を確認する場合：**
+```bash
+git checkout white-text-version
+```
+
+**元の透過版に戻る場合：**
+```bash
+git checkout main
+```
+
+これで2つのバージョンが完成しました：
+1. **`main`ブランチ**: 動画透過エフェクト版
+2. **`white-text-version`ブランチ**: 背景動画 + 白文字版
+
+どちらのバージョンがお好みでしょうか？
+
+---
+
+_**User**_
+
+背景をヒーロー全体にしてみて
+
+---
+
+_**Assistant**_
+
+背景動画をヒーローセクション全体に広げてみましょう！現在は「Northerns.」の部分だけですが、セクション全体を背景動画で覆うように変更します。
+
+
+---
+
+The string to replace was not found in the file.
+
+---
+
+現在のファイルの内容を確認して、正確に置き換えましょう：
+
+
+---
+
+Read file: src/components/HeroSection.tsx
+
+---
+
+ファイル全体を置き換えて、背景動画をヒーローセクション全体に広げましょう：
+
+
+---
+
+<details><summary>Edit file: src/components/HeroSection.tsx</summary>
+
+背景動画をヒーローセクション全体に広げ、すべてのテキストを白文字にして、動画の上にオーバーレイ表示するように変更します。
+
+**Chunk 1**
+Lines added: 28, lines removed: 31
+
+```diff
+@@ -11,47 +11,44 @@
+  
+    return (
+-     <section className="w-full py-8 md:py-12 lg:py-16">
+-       <div className="container px-4 md:px-6">
++     <section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
++       {/* Background Video for entire hero section */}
++       {isClient ? (
++         <video
++           autoPlay
++           muted
++           loop
++           playsInline
++           className="absolute inset-0 w-full h-full object-cover -z-10"
++         >
++           <source src="/background_movie.mp4" type="video/mp4" />
++         </video>
++       ) : (
++         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 -z-10" />
++       )}
++       
++       {/* Dark Overlay for Better Text Readability */}
++       <div className="absolute inset-0 bg-black/40 -z-10"></div>
++       
++       {/* Content Container */}
++       <div className="container px-4 md:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            
+            {/* From Ideas to Impact */}
+            <div className="mb-4">
+-             <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">
++             <span className="text-sm font-semibold tracking-wide uppercase text-white">
+                From Ideas to Impact
+              </span>
+            </div>
+            
+-           {/* Video Background with White Text Overlay */}
+-           <div className="relative flex justify-center items-center w-full mb-8">
+-             {/* Video Background Container */}
+-             <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center justify-center mx-auto overflow-hidden rounded-lg">
+-               {/* Background Video */}
+-               {isClient ? (
+-                 <video
+-                   autoPlay
+-                   muted
+-                   loop
+-                   playsInline
+-                   className="absolute inset-0 w-full h-full object-cover"
+-                 >
+-                   <source src="/background_movie.mp4" type="video/mp4" />
+-                 </video>
+-               ) : (
+-                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400" />
+-               )}
+-               
+-               {/* Dark Overlay for Better Text Readability */}
+-               <div className="absolute inset-0 bg-black/30"></div>
+-               
+-               {/* White Text Overlay */}
+-               <h1 className="relative z-10 text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl">
+-                 Northerns.
+-               </h1>
+-             </div>
++           {/* Northerns. Text */}
++           <div className="mb-8">
++             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl">
++               Northerns.
++             </h1>
+            </div>
+            
+            {/* Subtitle */}
+            <div className="mb-8">
+-             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-900 dark:text-white">
++             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white drop-shadow-lg">
+                多様なプロジェクトで<br />
+                新たな価値を創造します
+```
+
+**Chunk 2**
+Lines added: 6, lines removed: 6
+
+```diff
+@@ -62,19 +59,19 @@
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center justify-center gap-2">
+-               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-               <p>小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
++               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++               <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+-               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-               <p>最新技術と柔軟な発想で、新しい価値を生み出します</p>
++               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++               <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+              </div>
+            </div>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-             <button className="px-8 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
++             <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors drop-shadow-lg">
+                お問い合わせ
+              </button>
+-             <button className="px-8 py-3 border-2 border-black text-black font-semibold rounded-lg hover:bg-black hover:text-white transition-colors">
++             <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors drop-shadow-lg">
+                資料請求
+              </button>
+```
+
+</details>
+
+---
+
+完璧です！変更内容を確認しましょう：
+
+
+---
+
+```bash
+git diff src/components/HeroSection.tsx | cat
+```
+
+```
+
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 87f1561..96b1aed 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -10,49 +10,46 @@ export default function HeroSection() {
+   }, []);
+ 
+   return (
+-    <section className="w-full py-8 md:py-12 lg:py-16">
+-      <div className="container px-4 md:px-6">
++    <section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
++      {/* Background Video for entire hero section */}
++      {isClient ? (
++        <video
++          autoPlay
++          muted
++          loop
++          playsInline
++          className="absolute inset-0 w-full h-full object-cover -z-10"
++        >
++          <source src="/background_movie.mp4" type="video/mp4" />
++        </video>
++      ) : (
++        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 to-indigo
+-400 -z-10" />
+
++      )}
++      
++      {/* Dark Overlay for Better Text Readability */}
++      <div className="absolute inset-0 bg-black/40 -z-10"></div>
++      
++      {/* Content Container */}
++      <div className="container px-4 md:px-6 relative z-10">
+         <div className="max-w-5xl mx-auto text-center">
+           
+           {/* From Ideas to Impact */}
+           <div className="mb-4">
+-            <span className="text-sm font-semibold tracking-wide uppercase text-gray-500">
++            <span className="text-sm font-semibold tracking-wide uppercase text-white">
+               From Ideas to Impact
+             </span>
+           </div>
+           
+-          {/* Video Background with White Text Overlay */}
+-          <div className="relative flex justify-center items-center w-full mb-8">
+-            {/* Video Background Container */}
+-            <div className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[28rem] flex items-center just
+ify-center mx-auto overflow-hidden rounded-lg">
+
+-              {/* Background Video */}
+-              {isClient ? (
+-                <video
+-                  autoPlay
+-                  muted
+-                  loop
+-                  playsInline
+-                  className="absolute inset-0 w-full h-full object-cover"
+-                >
+-                  <source src="/background_movie.mp4" type="video/mp4" />
+-                </video>
+-              ) : (
+-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-400 t
+o-indigo-400" />
+
+-              )}
+-              
+-              {/* Dark Overlay for Better Text Readability */}
+-              <div className="absolute inset-0 bg-black/30"></div>
+-              
+-              {/* White Text Overlay */}
+-              <h1 className="relative z-10 text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking
+-tighter text-white leading-none drop-shadow-2xl">
+
+-                Northerns.
+-              </h1>
+-            </div>
++          {/* Northerns. Text */}
++          <div className="mb-8">
++            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-wh
+ite leading-none drop-shadow-2xl">
+
++              Northerns.
++            </h1>
+           </div>
+           
+           {/* Subtitle */}
+           <div className="mb-8">
+-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-900 dark:text
+-white">
+
++            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white drop-shadow-
+lg">
+
+               多様なプロジェクトで<br />
+               新たな価値を創造します
+             </h2>
+@@ -61,21 +58,21 @@ export default function HeroSection() {
+           {/* Feature Points */}
+           <div className="space-y-4 mb-8">
+             <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-              <p>小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
++              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++              <p className="text-white drop-shadow-md">小さく始めて、大きく育てる。複数のプロジェクトを並行して進めています</p>
+                                                                            
+             </div>
+             <div className="flex items-center justify-center gap-2">
+-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+-              <p>最新技術と柔軟な発想で、新しい価値を生み出します</p>
++              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
++              <p className="text-white drop-shadow-md">最新技術と柔軟な発想で、新しい価値を生み出します</p>
+             </div>
+           </div>
+           
+           {/* CTA Buttons */}
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+-            <button className="px-8 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transi
+tion-colors">
+
++            <button className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transi
+tion-colors drop-shadow-lg">
+
+               お問い合わせ
+             </button>
+-            <button className="px-8 py-3 border-2 border-black text-black font-semibold rounded-lg hover:bg-bl
+ack hover:text-white transition-colors">
+
++            <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-wh
+ite hover:text-black transition-colors drop-shadow-lg">
+
+               資料請求
+             </button>
+           </div>
+```
+
+---
+
+完了しました！背景動画をヒーローセクション全体に広げました。
+
+## **変更内容：**
+
+### 1. **背景動画をセクション全体に拡張**
+```tsx
+// 修正前：個別のコンテナ内のみ
+<div className="relative w-full max-w-4xl h-64...">
+
+// 修正後：セクション全体
+<section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
+  {/* Background Video for entire hero section */}
+  <video className="absolute inset-0 w-full h-full object-cover -z-10">
+```
+
+### 2. **レイヤー構造の最適化**
+- **背景動画**: `-z-10`で最背面に配置
+- **暗いオーバーレイ**: `bg-black/40`でテキストの可読性向上
+- **コンテンツ**: `z-10`で最前面に表示
+
+### 3. **すべてのテキストを白文字に統一**
+```tsx
+// From Ideas to Impact
+<span className="... text-white">
+
+// Northerns.
+<h1 className="... text-white">
+
+// サブタイトル
+<h2 className="... text-white">
+
+// 特徴ポイント
+<p className="... text-white">
+```
+
+### 4. **視覚効果の強化**
+- **ドロップシャドウ**: 各テキスト要素に`drop-shadow-2xl`、`drop-shadow-lg`、`drop-shadow-md`を適用
+- **ボタンの色調整**: 背景動画に映えるように白背景・黒文字に変更
+
+### 5. **レスポンシブ対応の維持**
+- 動画は`object-cover`で画面サイズに応じて適切にスケール
+- テキストサイズは従来通りレスポンシブ対応
+
+## **結果：**
+- ✅ 背景動画がヒーローセクション全体を覆う
+- ✅ すべてのテキストが白文字で統一
+- ✅ 動画の上にテキストが美しくオーバーレイ表示
+- ✅ ドロップシャドウでテキストの可読性が向上
+- ✅ よりインパクトのあるビジュアルデザイン
+
+これで背景動画がヒーローセクション全体を覆い、すべてのコンテンツが動画の上に美しく表示されるようになりました！
+
+---
+
+_**User**_
+
+ヒーローセクションは画面の縦幅全体に広げる
+ヒーローセクションより下にスクロールするまでは、ヘッダーを表示しない
+
+---
+
+_**Assistant**_
+
+ヒーローセクションを画面の縦幅全体に広げ、スクロールするまでヘッダーを非表示にする実装を行います。
+
+まず、現在のレイアウトファイルを確認しましょう：
+
+
+---
+
+Read file: src/app/layout.tsx
+
+---
+
+次に、メインページファイルを確認しましょう：
+
+
+---
+
+Read file: src/app/page.tsx
+
+---
+
+まず、ヘッダーのスクロール制御機能を実装します。新しいコンポーネント`ScrollHeader`を作成しましょう：
+
+
+---
+
+<details><summary>Edit file: src/components/ScrollHeader.tsx</summary>
+
+スクロール位置に応じてヘッダーの表示/非表示を制御するコンポーネントを作成します。
+
+**Chunk 1**
+Lines added: 37, lines removed: 1
+
+```diff
+@@ -1,1 +1,37 @@
+- 
++ "use client";
++ 
++ import { useState, useEffect } from "react";
++ import { Button } from "@/components/ui/button";
++ 
++ export default function ScrollHeader() {
++   const [isVisible, setIsVisible] = useState(false);
++ 
++   useEffect(() => {
++     const handleScroll = () => {
++       // ヒーローセクションの高さ（100vh）を超えたらヘッダーを表示
++       const scrollPosition = window.scrollY;
++       const heroHeight = window.innerHeight;
++       
++       setIsVisible(scrollPosition > heroHeight);
++     };
++ 
++     window.addEventListener('scroll', handleScroll);
++     return () => window.removeEventListener('scroll', handleScroll);
++   }, []);
++ 
++   return (
++     <header 
++       className={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm transition-all duration-300 ${
++         isVisible ? 'translate-y-0' : '-translate-y-full'
++       }`}
++     >
++       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
++         <a className="font-bold text-lg" href="#">
++           Northerns株式会社
++         </a>
++         <Button>お問い合わせ</Button>
++       </div>
++     </header>
++   );
++ }
++ 
+```
+
+</details>
+
+---
+
+
+
+---
+
+_**User**_
+
+ヘッダーの表示タイミングは、アニメーション効果を付加
+
+---
+
+_**Assistant**_
+
+ヘッダーの表示タイミングにアニメーション効果を追加します。現在のコードを確認して、より滑らかなアニメーションを実装しましょう。
+
+
+---
+
+Read file: src/components/ScrollHeader.tsx
+
+---
+
+ヘッダーのアニメーション効果を強化しましょう。より滑らかな表示/非表示のアニメーションと、スクロール方向に応じた動的な表示制御を追加します：
+
+
+---
+
+
+
+---
+
+
+
+---
+
