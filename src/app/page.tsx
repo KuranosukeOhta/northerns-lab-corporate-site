@@ -413,10 +413,6 @@ export default function Home() {
                 <div className="col-span-2 text-gray-700">北海道札幌市</div>
               </div>
               <div className="grid grid-cols-3 gap-4 py-6 border-b border-gray-300">
-                <div className="col-span-1 font-semibold text-gray-900">資本金</div>
-                <div className="col-span-2 text-gray-700">100万円</div>
-              </div>
-              <div className="grid grid-cols-3 gap-4 py-6 border-b border-gray-300">
                 <div className="col-span-1 font-semibold text-gray-900">事業内容</div>
                 <div className="col-span-2">
                   <ul className="list-disc pl-5 text-gray-700">
