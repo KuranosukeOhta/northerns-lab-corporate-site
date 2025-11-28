@@ -53,12 +53,6 @@ export default function HeroSection() {
         <div className="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none"></div>
         
         <div className="relative z-20 text-center">
-          {/* From Ideas to Impact Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-white text-xs font-bold tracking-widest uppercase mb-8">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            From Ideas to Impact
-          </div>
-          
           {/* Northerns Logo */}
           <div className="mb-8 transform hover:scale-105 transition-transform duration-700">
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer">
