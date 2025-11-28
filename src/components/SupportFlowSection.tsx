@@ -43,11 +43,16 @@ export default function SupportFlowSection() {
 
           {steps.map((step, index) => (
             <div key={index} className="relative flex flex-col items-center text-center group">
-              <div className="w-24 h-24 rounded-full bg-white border-4 border-gray-50 flex items-center justify-center mb-6 shadow-sm group-hover:border-gray-200 group-hover:scale-110 transition-all duration-300 z-10">
-                <div className="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center">
-                  {step.icon}
+              {/* Icon Container - 相対位置の親要素 */}
+              <div className="relative w-24 h-24 mb-6">
+                {/* スケールするアイコン部分 */}
+                <div className="w-24 h-24 rounded-full bg-white border-4 border-gray-50 flex items-center justify-center shadow-sm group-hover:border-gray-200 group-hover:scale-110 transition-all duration-300 z-10">
+                  <div className="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center">
+                    {step.icon}
+                  </div>
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gray-200 text-gray-700 font-bold flex items-center justify-center text-sm border-2 border-white">
+                {/* 数字チップ - スケールの影響を受けない */}
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gray-200 text-gray-700 font-bold flex items-center justify-center text-sm border-2 border-white z-20">
                   {index + 1}
                 </div>
               </div>
