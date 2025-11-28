@@ -158,12 +158,19 @@ export default function ProjectHoverReveal() {
                 >
                   <div className={`flex items-center justify-between border-b py-8 transition-colors duration-300 ${isActive ? 'border-black' : 'border-gray-200 hover:border-black'}`}>
                     <div>
-                      <p className={`text-sm mb-2 transition-colors ${isActive ? 'text-black' : 'text-gray-500 hover:text-black'}`}>{project.category}</p>
+                      <div className="flex items-center gap-3 mb-2">
+                        <p className={`text-sm transition-colors ${isActive ? 'text-black' : 'text-gray-500 hover:text-black'}`}>{project.category}</p>
+                        {project.devPeriod && (
+                          <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${isActive ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'}`}>
+                            {project.devPeriod}
+                          </span>
+                        )}
+                      </div>
                       <h3 className={`text-2xl md:text-4xl font-bold transition-colors duration-300 ${isActive ? 'text-black' : 'text-gray-300 hover:text-black'}`}>
                         {project.title}
                       </h3>
                     </div>
-                    <ArrowRight className={`w-6 h-6 transition-all duration-300 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 hover:opacity-100 hover:translate-x-0'}`} />
+                    <ArrowRight className={`w-6 h-6 shrink-0 transition-all duration-300 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 hover:opacity-100 hover:translate-x-0'}`} />
                   </div>
                 </motion.div>
               );
@@ -202,10 +209,7 @@ export default function ProjectHoverReveal() {
                     transition={{ delay: 0.3 }}
                     className={activeProject.textColor}
                   >
-                    <h4 className="text-3xl font-bold mb-2">{activeProject.title}</h4>
-                    {activeProject.devPeriod && (
-                      <p className="text-sm opacity-70 mb-4 font-medium">{activeProject.devPeriod}</p>
-                    )}
+                    <h4 className="text-3xl font-bold mb-4">{activeProject.title}</h4>
                     <p className="text-lg opacity-90 leading-relaxed">
                       {activeProject.description}
                     </p>
