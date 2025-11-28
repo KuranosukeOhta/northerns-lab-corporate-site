@@ -16,7 +16,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     category: 'Press Release',
     title: 'AIポストラボ β版リリースのお知らせ',
     summary: 'X(旧Twitter)等のSNS運用をAIでサポートする新サービス「AIポストラボ」のβ版を公開しました。投稿文章の自動生成、最適な投稿タイミングの提案など、SNSマーケティングを効率化する機能を搭載しています。',
-    imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1764143458473-ffffec0bad84?q=80&w=1288&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '3',
