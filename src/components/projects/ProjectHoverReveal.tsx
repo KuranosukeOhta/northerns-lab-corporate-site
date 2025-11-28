@@ -7,13 +7,13 @@ import { Camera, Globe, Code, MessageSquare, Printer, ArrowRight } from "lucide-
 const projects = [
   {
     id: 1,
-    title: "3D Visualization Services",
-    category: "Spatial Computing",
-    description: "Matterportを活用した、没入感のある不動産・施設の3Dバーチャルツアー撮影サービス。",
-    icon: <Camera className="w-12 h-12" />,
-    color: "bg-gray-900",
+    title: "SNS Management Tool",
+    category: "SaaS / In Development",
+    description: "GitHubライクなレビューフローを取り入れた、チーム向けSNS運用管理プラットフォーム。",
+    icon: <MessageSquare className="w-12 h-12" />,
+    color: "bg-blue-600",
     textColor: "text-white",
-    href: "https://matterport-service-hp.vercel.app/"
+    href: "#"
   },
   {
     id: 2,
@@ -27,31 +27,31 @@ const projects = [
   },
   {
     id: 3,
-    title: "Local Business DX",
-    category: "Consulting",
-    description: "地域企業のデジタル化を包括的にサポート。Webサイト制作からSNS運用、業務効率化まで。",
-    icon: <Code className="w-12 h-12" />,
-    color: "bg-emerald-600",
+    title: "3D Visualization Services",
+    category: "Spatial Computing",
+    description: "Matterportを活用した、没入感のある不動産・施設の3Dバーチャルツアー撮影サービス。",
+    icon: <Camera className="w-12 h-12" />,
+    color: "bg-gray-900",
     textColor: "text-white",
-    href: "#"
+    href: "https://matterport-service-hp.vercel.app/"
   },
   {
     id: 4,
-    title: "SNS Management Tool",
-    category: "SaaS / In Development",
-    description: "GitHubライクなレビューフローを取り入れた、チーム向けSNS運用管理プラットフォーム。",
-    icon: <MessageSquare className="w-12 h-12" />,
-    color: "bg-blue-600",
-    textColor: "text-white",
-    href: "#"
-  },
-  {
-    id: 5,
     title: "CrowdPrinting",
     category: "Platform / In Development",
     description: "3Dプリンター所有者と印刷ニーズを持つユーザーをつなぐマッチングプラットフォーム。",
     icon: <Printer className="w-12 h-12" />,
     color: "bg-orange-500",
+    textColor: "text-white",
+    href: "#"
+  },
+  {
+    id: 5,
+    title: "Local Business DX",
+    category: "Consulting",
+    description: "地域企業のデジタル化を包括的にサポート。Webサイト制作からSNS運用、業務効率化まで。",
+    icon: <Code className="w-12 h-12" />,
+    color: "bg-emerald-600",
     textColor: "text-white",
     href: "#"
   }
