@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Globe, Code, MessageSquare, Printer, ArrowRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
@@ -61,14 +59,83 @@ const projects = [
 
 export default function ProjectHoverReveal() {
   const [activeProject, setActiveProject] = useState(projects[0]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      }
+    };
+
+    const section = sectionRef.current;
+    if (section) {
+      section.addEventListener('mousemove', handleMouseMove);
+      return () => section.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
 
   return (
-    <section className="w-full py-24 md:py-32 bg-white overflow-hidden">
-      <div className="container px-4 md:px-6 mx-auto max-w-7xl">
-        <div className="mb-12 text-center md:text-left">
-          <Badge className="mb-4 bg-black text-white hover:bg-gray-800">案1: Hover Reveal Gallery</Badge>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Selected Works</h2>
-          <p className="text-gray-500">リストをホバーして詳細を表示</p>
+    <section 
+      id="projects" 
+      ref={sectionRef}
+      className="w-full py-24 md:py-32 bg-white overflow-hidden relative"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {/* Mouse Follow Highlight */}
+      <motion.div
+        className="pointer-events-none absolute w-[500px] h-[500px] rounded-full"
+        animate={{
+          x: mousePosition.x - 250,
+          y: mousePosition.y - 250,
+          opacity: isHovering ? 1 : 0,
+        }}
+        transition={{
+          type: "spring",
+          damping: 30,
+          stiffness: 200,
+          opacity: { duration: 0.2 }
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 40%, transparent 70%)",
+        }}
+      />
+      
+      {/* Secondary smaller highlight for more depth */}
+      <motion.div
+        className="pointer-events-none absolute w-[200px] h-[200px] rounded-full"
+        animate={{
+          x: mousePosition.x - 100,
+          y: mousePosition.y - 100,
+          opacity: isHovering ? 1 : 0,
+        }}
+        transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 300,
+          opacity: { duration: 0.2 }
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%)",
+        }}
+      />
+      
+      <div className="container px-4 md:px-6 mx-auto max-w-7xl relative z-10">
+        <div className="mb-20 text-center md:text-left">
+          <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-4">Our Works</p>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-gray-900 mb-6">
+            Selected Works
+          </h2>
+          <p className="text-gray-600 max-w-2xl text-lg">
+            最先端技術とクリエイティブな発想で、多様なビジネス課題を解決するプロジェクトを展開しています。
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start relative">
