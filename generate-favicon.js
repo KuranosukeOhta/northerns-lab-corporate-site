@@ -7,9 +7,9 @@ const outputPath = 'src/app';
 
 const configuration = {
   path: '/',
-  appName: 'Northerns Lab',
-  appShortName: 'N.',
-  appDescription: 'Northerns Lab Corporate Site',
+  appName: 'Northerns合同会社',
+  appShortName: 'Northerns',
+  appDescription: 'Northerns合同会社（Northerns LLC） Corporate Site',
   background: '#2563eb',
   theme_color: '#2563eb',
   appleStatusBarStyle: 'default',

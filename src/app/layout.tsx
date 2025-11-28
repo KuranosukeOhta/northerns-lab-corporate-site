@@ -9,7 +9,20 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Northerns合同会社 (Northerns LLC)",
-  description: "多様なプロジェクトで、新たな価値を創造します。",
+  description: "Northerns合同会社（Northerns LLC）は、多様なプロジェクトを通じて新たな価値を創造するテックカンパニーです。",
+  openGraph: {
+    title: "Northerns合同会社 (Northerns LLC)",
+    description: "Northerns合同会社（Northerns LLC）のコーポレートサイト。SaaS開発、動画翻訳・ローカライズ、3Dバーチャルツアー制作など、多様なプロジェクトで新しい価値を提供します。",
+    url: "https://northerns.vercel.app",
+    siteName: "Northerns合同会社",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Northerns合同会社 (Northerns LLC)",
+    description: "Northerns合同会社（Northerns LLC）の公式サイト。",
+  },
 };
 
 export default function RootLayout({
