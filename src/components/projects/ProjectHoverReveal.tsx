@@ -122,26 +122,29 @@ export default function ProjectHoverReveal() {
         <div className="grid lg:grid-cols-2 gap-12 items-start relative">
           {/* Project List */}
           <div className="space-y-4 z-10">
-            {projects.map((project) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: project.id * 0.1 }}
-                className="group cursor-pointer"
-                onMouseEnter={() => setActiveProject(project)}
-              >
-                <div className="flex items-center justify-between border-b border-gray-200 py-8 group-hover:border-black transition-colors duration-300">
-                  <div>
-                    <p className="text-sm text-gray-500 mb-2 group-hover:text-black transition-colors">{project.category}</p>
-                    <h3 className="text-2xl md:text-4xl font-bold text-gray-300 group-hover:text-black transition-colors duration-300">
-                      {project.title}
-                    </h3>
+            {projects.map((project) => {
+              const isActive = activeProject.id === project.id;
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: project.id * 0.1 }}
+                  className="cursor-pointer"
+                  onMouseEnter={() => setActiveProject(project)}
+                >
+                  <div className={`flex items-center justify-between border-b py-8 transition-colors duration-300 ${isActive ? 'border-black' : 'border-gray-200 hover:border-black'}`}>
+                    <div>
+                      <p className={`text-sm mb-2 transition-colors ${isActive ? 'text-black' : 'text-gray-500 hover:text-black'}`}>{project.category}</p>
+                      <h3 className={`text-2xl md:text-4xl font-bold transition-colors duration-300 ${isActive ? 'text-black' : 'text-gray-300 hover:text-black'}`}>
+                        {project.title}
+                      </h3>
+                    </div>
+                    <ArrowRight className={`w-6 h-6 transition-all duration-300 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 hover:opacity-100 hover:translate-x-0'}`} />
                   </div>
-                  <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300" />
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Preview Area (Sticky) */}
