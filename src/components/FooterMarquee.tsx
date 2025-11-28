@@ -7,14 +7,14 @@ export default function FooterMarquee() {
     <div className="w-full bg-white overflow-hidden py-12 md:py-20 border-t border-gray-100 flex flex-col gap-2 md:gap-4">
       {/* 1行目: 左方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="left" text="NORTHERNS INC." />
-        <MarqueeRow direction="left" text="NORTHERNS INC." />
+        <MarqueeRow direction="left" text="NORTHERNS INC." duration={50} />
+        <MarqueeRow direction="left" text="NORTHERNS INC." duration={50} />
       </div>
       
       {/* 2行目: 右方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" />
-        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" />
+        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" duration={75} />
+        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" duration={75} />
       </div>
     </div>
   );
@@ -23,9 +23,10 @@ export default function FooterMarquee() {
 interface MarqueeRowProps {
   direction?: "left" | "right";
   text: string;
+  duration?: number;
 }
 
-function MarqueeRow({ direction = "left", text }: MarqueeRowProps) {
+function MarqueeRow({ direction = "left", text, duration = 50 }: MarqueeRowProps) {
   const isLeft = direction === "left";
   
   return (
@@ -36,7 +37,7 @@ function MarqueeRow({ direction = "left", text }: MarqueeRowProps) {
       transition={{ 
         repeat: Infinity, 
         ease: "linear", 
-        duration: 50
+        duration: duration
       }}
     >
       {[...Array(4)].map((_, i) => {
