@@ -32,7 +32,7 @@ export default function ClassicEditorial({ item, content }: ArticleTemplateProps
                     <Clock className="w-3 h-3" /> {item.date}
                 </span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-8">
+            <h1 className="text-3xl md:text-5xl font-sans font-bold text-gray-900 leading-tight mb-8">
                 {item.title}
             </h1>
             <div className="flex items-center justify-center gap-3 text-sm text-gray-500 border-t border-b border-gray-100 py-4 max-w-xl mx-auto">
@@ -56,7 +56,7 @@ export default function ClassicEditorial({ item, content }: ArticleTemplateProps
         )}
 
         {/* Content */}
-        <div className="prose prose-lg prose-gray mx-auto font-serif">
+        <div className="prose prose-lg prose-gray mx-auto font-sans">
              {/* Dummy Content Generator */}
              <p className="lead text-xl text-gray-600 mb-8 font-sans leading-relaxed">
                 {item.summary} ここはリード文が入ります。記事の要約や導入部分として、読者の興味を惹きつける重要なセクションです。
@@ -69,7 +69,7 @@ export default function ClassicEditorial({ item, content }: ArticleTemplateProps
              </div>
 
              <p>
-                テキストの読みやすさを重視し、適切な行間と文字サイズを設定しています。セリフ体（明朝体など）を使用することで、知的で落ち着いた印象を与え、長文でも疲れにくいデザインを目指しています。
+                テキストの読みやすさを重視し、適切な行間と文字サイズを設定しています。サイトのトーンに合わせてサンセリフ体を使用し、モダンでクリーンな印象を与え、長文でも疲れにくいデザインを目指しています。
              </p>
 
              <h2>セクション見出し</h2>
