@@ -13,7 +13,7 @@ export default function CompanyProfileSection() {
               会社概要
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8">
-              Northerns株式会社は、北海道札幌市を拠点とするテックカンパニーです。<br />
+              Northerns株式会社は、北海道札幌市で設立されたテックカンパニーです。<br />
               「北の大地から、世界へ」をテーマに、デジタルの力で地域と世界をつなぐ架け橋となります。
             </p>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 inline-block">
