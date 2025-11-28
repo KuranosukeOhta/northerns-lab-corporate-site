@@ -91,13 +91,18 @@ export default function ProjectHoverReveal() {
   const [activeTab, setActiveTab] = useState<"service" | "case">("service");
   const filteredProjects = projects.filter(p => p.type === activeTab);
   const [activeProject, setActiveProject] = useState(filteredProjects[0]);
+  const [lockedProject, setLockedProject] = useState<typeof projects[0] | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  // 表示するプロジェクト（ロック中はロックされたもの、そうでなければホバー中のもの）
+  const displayProject = lockedProject || activeProject;
+
   useEffect(() => {
     const filtered = projects.filter(p => p.type === activeTab);
     setActiveProject(filtered[0]);
+    setLockedProject(null); // タブ切り替え時はロック解除
   }, [activeTab]);
 
   useEffect(() => {
@@ -175,7 +180,8 @@ export default function ProjectHoverReveal() {
           {/* Project List */}
           <div className="space-y-2">
             {filteredProjects.map((project) => {
-              const isActive = activeProject.id === project.id;
+              const isActive = displayProject.id === project.id;
+              const isLocked = lockedProject?.id === project.id;
               return (
                 <motion.div
                   key={project.id}
@@ -183,7 +189,19 @@ export default function ProjectHoverReveal() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
                   className="cursor-pointer"
-                  onMouseEnter={() => setActiveProject(project)}
+                  onMouseEnter={() => {
+                    if (!lockedProject) {
+                      setActiveProject(project);
+                    }
+                  }}
+                  onClick={() => {
+                    // 同じプロジェクトをクリックしたらロック解除、違うならロック
+                    if (lockedProject?.id === project.id) {
+                      setLockedProject(null);
+                    } else {
+                      setLockedProject(project);
+                    }
+                  }}
                 >
                   <div className={`flex items-center justify-between border-b py-6 transition-colors duration-300 ${isActive ? 'border-black' : 'border-gray-200 hover:border-black'}`}>
                     <div>
@@ -192,6 +210,11 @@ export default function ProjectHoverReveal() {
                         {project.devPeriod && (
                           <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${isActive ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'}`}>
                             {project.devPeriod}
+                          </span>
+                        )}
+                        {isLocked && (
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500 text-white">
+                            固定中
                           </span>
                         )}
                       </div>
@@ -210,12 +233,12 @@ export default function ProjectHoverReveal() {
           <div className="hidden lg:block sticky top-32 h-[500px] w-full">
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeProject.id}
+                key={displayProject.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.05 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className={`w-full h-full rounded-3xl overflow-hidden shadow-2xl ${activeProject.color} relative flex items-center justify-center p-12`}
+                className={`w-full h-full rounded-3xl overflow-hidden shadow-2xl ${displayProject.color} relative flex items-center justify-center p-12`}
               >
                 {/* Background Decoration */}
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -227,8 +250,8 @@ export default function ProjectHoverReveal() {
                     transition={{ delay: 0.2 }}
                     className="p-6 bg-white/10 backdrop-blur-md rounded-full"
                   >
-                    <div className={activeProject.textColor}>
-                      {activeProject.icon}
+                    <div className={displayProject.textColor}>
+                      {displayProject.icon}
                     </div>
                   </motion.div>
 
@@ -236,16 +259,16 @@ export default function ProjectHoverReveal() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className={activeProject.textColor}
+                    className={displayProject.textColor}
                   >
-                    <h4 className="text-3xl font-bold mb-4">{activeProject.title}</h4>
+                    <h4 className="text-3xl font-bold mb-4">{displayProject.title}</h4>
                     <p className="text-lg opacity-90 leading-relaxed">
-                      {activeProject.description}
+                      {displayProject.description}
                     </p>
                   </motion.div>
 
                   <motion.a
-                    href={activeProject.href}
+                    href={displayProject.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ y: 20, opacity: 0 }}
