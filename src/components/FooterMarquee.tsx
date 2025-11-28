@@ -35,7 +35,7 @@ function MarqueeRow({ direction = "left" }: MarqueeRowProps) {
       transition={{ 
         repeat: Infinity, 
         ease: "linear", 
-        duration: 25
+        duration: 50
       }}
     >
       <span className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 opacity-90 ${
