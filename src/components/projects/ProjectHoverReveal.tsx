@@ -17,7 +17,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "TranslateJapan",
+    title: "LocalizeJapan",
     category: "Localization",
     description: "海外コンテンツの日本語ローカライズに特化した、YouTube動画の翻訳・吹き替えサービス。",
     icon: <Globe className="w-12 h-12" />,
