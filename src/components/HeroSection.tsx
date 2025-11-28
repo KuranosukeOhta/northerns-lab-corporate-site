@@ -47,10 +47,9 @@ export default function HeroSection() {
       {/* オーバーレイ */}
       <div className="absolute inset-0 bg-gray-900/50" style={{ zIndex: 1 }}></div>
       
-      {/* Glass Card - ブラーなし */}
-      <div className="relative p-8 md:p-16 rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.3)] max-w-6xl mx-4 w-full overflow-hidden" style={{ zIndex: 10 }}>
-        {/* 光の反射エフェクト */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+      {/* Content Card */}
+      <div className="relative p-8 md:p-16 max-w-6xl mx-4 w-full overflow-hidden" style={{ zIndex: 10 }}>
+        {/* 光のエフェクト */}
         <div className="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none"></div>
         
         <div className="relative z-20 text-center">
