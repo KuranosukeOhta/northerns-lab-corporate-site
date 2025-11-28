@@ -61,15 +61,19 @@ export default function CompanyProfileSection() {
                 <div className="text-gray-900 font-medium space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                    <span>多言語コンテンツ制作事業</span>
+                    <span>SaaS開発・運営</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                    <span>3D可視化・撮影事業</span>
+                    <span>動画翻訳・ローカライズ</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                    <span>DXコンサルティング・開発事業</span>
+                    <span>3Dバーチャルツアー制作</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                    <span>Webサイト・システム開発</span>
                   </div>
                 </div>
               </div>
