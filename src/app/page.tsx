@@ -2,6 +2,9 @@
 
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ProjectHoverReveal from "@/components/projects/ProjectHoverReveal";
+import ProjectStickyStack from "@/components/projects/ProjectStickyStack";
+import ProjectSpotlightGrid from "@/components/projects/ProjectSpotlightGrid";
 import SupportFlowSection from "@/components/SupportFlowSection";
 import CompanyProfileSection from "@/components/CompanyProfileSection";
 import ContactSection from "@/components/ContactSection";
@@ -17,6 +20,17 @@ export default function Home() {
 
         {/* Projects Section */}
         <ProjectsSection />
+
+        {/* Experimental Project Sections */}
+        <div className="w-full bg-gray-900 text-white py-8 text-center">
+          <h3 className="text-2xl font-bold">👇 以下、新デザイン案のテスト配置 👇</h3>
+        </div>
+        <ProjectHoverReveal />
+        <ProjectStickyStack />
+        <ProjectSpotlightGrid />
+        <div className="w-full bg-gray-900 text-white py-8 text-center">
+          <h3 className="text-2xl font-bold">👆 テスト配置終了 👆</h3>
+        </div>
         
         {/* Support Flow Section */}
         <SupportFlowSection />
