@@ -48,8 +48,8 @@ export default function HeroSection() {
       <div className="hidden md:block absolute right-0 top-0 w-[25px] h-full bg-white" style={{ zIndex: 20 }}></div>
       
       {/* Content Container */}
-      <div className="container px-4 md:px-6 relative h-full flex items-center justify-center" style={{ zIndex: 10 }}>
-        <div className="max-w-5xl mx-auto text-center">
+      <div className="absolute inset-0 flex items-center justify-center px-4" style={{ zIndex: 10 }}>
+        <div className="max-w-5xl w-full text-center">
           
           {/* From Ideas to Impact */}
           <div className="mb-4">
