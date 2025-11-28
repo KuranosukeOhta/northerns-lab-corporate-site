@@ -7,14 +7,14 @@ export default function FooterMarquee() {
     <div className="w-full bg-white overflow-hidden py-12 md:py-20 border-t border-gray-100 flex flex-col gap-2 md:gap-4">
       {/* 1行目: 左方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="left" />
-        <MarqueeRow direction="left" />
+        <MarqueeRow direction="left" text="NORTHERNS INC." />
+        <MarqueeRow direction="left" text="NORTHERNS INC." />
       </div>
       
       {/* 2行目: 右方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="right" />
-        <MarqueeRow direction="right" />
+        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" />
+        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" />
       </div>
     </div>
   );
@@ -22,9 +22,10 @@ export default function FooterMarquee() {
 
 interface MarqueeRowProps {
   direction?: "left" | "right";
+  text: string;
 }
 
-function MarqueeRow({ direction = "left" }: MarqueeRowProps) {
+function MarqueeRow({ direction = "left", text }: MarqueeRowProps) {
   const isLeft = direction === "left";
   
   return (
@@ -38,34 +39,30 @@ function MarqueeRow({ direction = "left" }: MarqueeRowProps) {
         duration: 50
       }}
     >
-      <span className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 opacity-90 ${
-        isLeft 
-          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500" 
-          : "text-gray-200" // ストローク風のデザインにするのもありだが、まずは色反転でメリハリをつける
-      }`}>
-        NORTHERNS INC.
-      </span>
-      <span className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 ${
-        isLeft 
-          ? "text-gray-200" 
-          : "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600"
-      }`}>
-        MEET, CONNECT, CREATE
-      </span>
-      <span className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 opacity-90 ${
-        isLeft 
-          ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600" 
-          : "text-gray-200"
-      }`}>
-        NORTHERNS INC.
-      </span>
-      <span className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 ${
-        isLeft 
-          ? "text-gray-200" 
-          : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500"
-      }`}>
-        MEET, CONNECT, CREATE
-      </span>
+      {[...Array(4)].map((_, i) => {
+        // 偶数・奇数でスタイルを切り替え（行によって反転）
+        const isGradient = isLeft ? i % 2 === 0 : i % 2 !== 0;
+        
+        // グラデーションの向きを交互に変える
+        // 左方向(上段): 0番目は青→橙, 2番目は橙→青
+        // 右方向(下段): 1番目は橙→青, 3番目は青→橙
+        const isBlueToOrange = isLeft ? i % 4 === 0 : i % 4 === 3;
+
+        return (
+          <span 
+            key={i}
+            className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 ${
+              isGradient 
+                ? `text-transparent bg-clip-text bg-gradient-to-r opacity-90 ${
+                    isBlueToOrange ? "from-blue-600 to-orange-500" : "from-orange-500 to-blue-600"
+                  }`
+                : "text-gray-200"
+            }`}
+          >
+            {text}
+          </span>
+        );
+      })}
     </motion.div>
   );
 }
