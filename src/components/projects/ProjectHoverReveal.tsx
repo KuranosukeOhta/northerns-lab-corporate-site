@@ -151,12 +151,12 @@ export default function ProjectHoverReveal() {
 
       <div className="container px-4 md:px-6 mx-auto max-w-7xl relative z-10">
         <div className="mb-12 text-center md:text-left">
-          <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-4">Our Works</p>
+          <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-4">Services & Projects</p>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-gray-900 mb-6">
-            Selected Works
+            事業・実績一覧
           </h2>
           <p className="text-gray-600 max-w-2xl text-lg">
-            最先端技術とクリエイティブな発想で、多様なビジネス課題を解決するプロジェクトを展開しています。
+            これまでの開発実績をご紹介します。
           </p>
         </div>
 
