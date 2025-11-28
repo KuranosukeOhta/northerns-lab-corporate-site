@@ -1,37 +1,54 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-// クライアントサイドのみでレンダリングされるコンポーネント
-const ClientOnlyVideo = dynamic(() => Promise.resolve(() => (
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover -z-10"
-  >
-    <source src="/background_movie.mp4" type="video/mp4" />
-  </video>
-)), { ssr: false });
+import { useEffect, useState, useRef } from "react";
 
 export default function HeroSection() {
+  const [isMounted, setIsMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
+  useEffect(() => {
+    // 動画の再生を確実にする
+    if (isMounted && videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Video autoplay was prevented:", error);
+      });
+    }
+  }, [isMounted]);
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Video for entire hero section */}
-      <ClientOnlyVideo />
+      {isMounted && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        >
+          <source src="/background_movie.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
       
       {/* Dark Overlay for Better Text Readability */}
-      <div className="absolute inset-0 bg-black/40 -z-10"></div>
+      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }}></div>
       
       {/* Left White Band - PC Only */}
-      <div className="hidden md:block absolute left-0 top-0 w-[25px] h-full bg-white z-20"></div>
+      <div className="hidden md:block absolute left-0 top-0 w-[25px] h-full bg-white" style={{ zIndex: 20 }}></div>
       
       {/* Right White Band - PC Only */}
-      <div className="hidden md:block absolute right-0 top-0 w-[25px] h-full bg-white z-20"></div>
+      <div className="hidden md:block absolute right-0 top-0 w-[25px] h-full bg-white" style={{ zIndex: 20 }}></div>
       
       {/* Content Container */}
-      <div className="container px-4 md:px-6 relative z-10 h-full flex items-center justify-center">
+      <div className="container px-4 md:px-6 relative h-full flex items-center justify-center" style={{ zIndex: 10 }}>
         <div className="max-w-5xl mx-auto text-center">
           
           {/* From Ideas to Impact */}
