@@ -89,41 +89,19 @@ export default function ProjectHoverReveal() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Mouse Follow Highlight */}
+      {/* Mouse Follow Circle Outline */}
       <motion.div
-        className="pointer-events-none absolute w-[500px] h-[500px] rounded-full"
+        className="pointer-events-none absolute w-[120px] h-[120px] rounded-full border-[3px] border-black"
         animate={{
-          x: mousePosition.x - 250,
-          y: mousePosition.y - 250,
-          opacity: isHovering ? 1 : 0,
-        }}
-        transition={{
-          type: "spring",
-          damping: 30,
-          stiffness: 200,
-          opacity: { duration: 0.2 }
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 40%, transparent 70%)",
-        }}
-      />
-      
-      {/* Secondary smaller highlight for more depth */}
-      <motion.div
-        className="pointer-events-none absolute w-[200px] h-[200px] rounded-full"
-        animate={{
-          x: mousePosition.x - 100,
-          y: mousePosition.y - 100,
+          x: mousePosition.x - 60,
+          y: mousePosition.y - 60,
           opacity: isHovering ? 1 : 0,
         }}
         transition={{
           type: "spring",
           damping: 25,
           stiffness: 300,
-          opacity: { duration: 0.2 }
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%)",
+          opacity: { duration: 0.15 }
         }}
       />
       
