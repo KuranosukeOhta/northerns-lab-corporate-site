@@ -10,13 +10,13 @@ export default function FooterMarquee() {
         <MarqueeRow 
           direction="left" 
           text="NORTHERNS INC." 
-          duration={75} 
+          duration={100} 
           textSize="text-[13vw] md:text-[12vw]"
         />
         <MarqueeRow 
           direction="left" 
           text="NORTHERNS INC." 
-          duration={75} 
+          duration={100} 
           textSize="text-[13vw] md:text-[12vw]"
         />
       </div>
@@ -78,7 +78,7 @@ function MarqueeRow({ direction = "left", text, duration = 50, textSize = "text-
                 ? `text-transparent bg-clip-text bg-gradient-to-r opacity-90 ${
                     isBlueToOrange ? "from-blue-600 to-orange-500" : "from-orange-500 to-blue-600"
                   }`
-                : "text-gray-200"
+                : "text-gray-800"
             }`}
           >
             {text}
