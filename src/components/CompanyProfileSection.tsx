@@ -23,7 +23,7 @@ export default function CompanyProfileSection() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Head Office</p>
-                  <p className="text-gray-900 font-semibold">北海道札幌市</p>
+                  <p className="text-gray-900 font-semibold">東京都江東区</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
