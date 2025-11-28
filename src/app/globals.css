@@ -176,7 +176,7 @@
   }
   
   /* マスクがサポートされていない場合のフォールバック */
-  @supports not (mask: url(#text-mask)) and not (-webkit-mask: url(#text-mask)) {
+  @supports not ((mask: url(#text-mask)) or (-webkit-mask: url(#text-mask))) {
     .mask-fallback {
       opacity: 1 !important;
     }
@@ -194,7 +194,7 @@
   }
   
   /* Show fallback if mask is not supported */
-  @supports not (mask: url(#northerns-text-mask)) and not (-webkit-mask: url(#northerns-text-mask)) {
+  @supports not ((mask: url(#northerns-text-mask)) or (-webkit-mask: url(#northerns-text-mask))) {
     .mask-fallback {
       opacity: 1 !important;
       position: relative;
