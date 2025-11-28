@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Northerns株式会社",
+  title: "Northerns合同会社 (Northerns LLC)",
   description: "多様なプロジェクトで、新たな価値を創造します。",
 };
 

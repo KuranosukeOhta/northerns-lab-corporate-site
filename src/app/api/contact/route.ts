@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
-            Northerns株式会社 お問い合わせフォーム
+            Northerns合同会社（Northerns LLC）お問い合わせフォーム
           </h2>
           
           <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
           </div>
           
           <div style="margin-top: 20px; text-align: center; color: #6b7280; font-size: 12px;">
-            <p>Northerns株式会社</p>
+            <p>Northerns合同会社 (Northerns LLC)</p>
             <p>〒060-0001 北海道札幌市中央区北1条西1丁目</p>
           </div>
         </div>

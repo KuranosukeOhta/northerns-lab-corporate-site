@@ -9,13 +9,13 @@ export default function FooterMarquee() {
       <div className="relative flex whitespace-nowrap overflow-hidden">
         <MarqueeRow 
           direction="left" 
-          text="NORTHERNS INC." 
+          text="NORTHERNS LLC" 
           duration={100} 
           textSize="text-[13vw] md:text-[12vw]"
         />
         <MarqueeRow 
           direction="left" 
-          text="NORTHERNS INC." 
+          text="NORTHERNS LLC" 
           duration={100} 
           textSize="text-[13vw] md:text-[12vw]"
         />

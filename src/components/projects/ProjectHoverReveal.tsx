@@ -65,7 +65,7 @@ const projects = [
   },
   {
     id: 6,
-    title: "Northerns株式会社",
+    title: "Northerns合同会社",
     category: "自社コーポレートサイトの構築",
     description: "自社コーポレートサイトの設計・開発。Next.js + Tailwind CSSによるモダンなWebサイト。",
     icon: <Building2 className="w-12 h-12" />,

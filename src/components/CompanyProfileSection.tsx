@@ -13,7 +13,7 @@ export default function CompanyProfileSection() {
               会社概要
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8">
-              Northerns株式会社は、北海道札幌市で設立されたテックカンパニーです。<br />
+              Northerns合同会社（Northerns LLC）は、北海道札幌市で設立されたテックカンパニーです。<br />
               「北の大地から、世界へ」をテーマに、デジタルの力で地域と世界をつなぐ架け橋となります。
             </p>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 inline-block">
@@ -43,7 +43,7 @@ export default function CompanyProfileSection() {
             <div className="divide-y divide-gray-100">
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
                 <span className="text-sm font-bold text-gray-400 uppercase tracking-wider w-32 shrink-0">会社名</span>
-                <span className="text-gray-900 font-medium">Northerns株式会社<br /><span className="text-gray-500 text-sm">(Northerns Inc.)</span></span>
+                <span className="text-gray-900 font-medium">Northerns合同会社<br /><span className="text-gray-500 text-sm">(Northerns LLC)</span></span>
               </div>
               
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
