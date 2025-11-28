@@ -2,18 +2,19 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Camera, Globe, Code, MessageSquare, Printer, ArrowRight } from "lucide-react";
+import { Camera, Globe, Code, MessageSquare, Printer, ArrowRight, Building2, Bot, Map } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "SNS Management Tool",
-    category: "SaaS / In Development",
-    description: "GitHubライクなレビューフローを取り入れた、チーム向けSNS運用管理プラットフォーム。",
-    icon: <MessageSquare className="w-12 h-12" />,
+    title: "AIポストラボ",
+    category: "SaaS",
+    description: "X(旧Twitter)等のSNS運用をサポートするソフトウェア。AIを活用することにより投稿文章の作成をサポートします。",
+    icon: <Bot className="w-12 h-12" />,
     color: "bg-blue-600",
     textColor: "text-white",
-    href: "#"
+    href: "https://www.aipostlab.net/",
+    devPeriod: "2025年9月〜開発中"
   },
   {
     id: 2,
@@ -23,11 +24,11 @@ const projects = [
     icon: <Globe className="w-12 h-12" />,
     color: "bg-indigo-600",
     textColor: "text-white",
-    href: "https://translate-japan.vercel.app/"
+    href: "https://www.localizejapan.com/"
   },
   {
     id: 3,
-    title: "3D Visualization Services",
+    title: "3Dバーチャルツアー制作代行",
     category: "Spatial Computing",
     description: "Matterportを活用した、没入感のある不動産・施設の3Dバーチャルツアー撮影サービス。",
     icon: <Camera className="w-12 h-12" />,
@@ -38,23 +39,44 @@ const projects = [
   {
     id: 4,
     title: "CrowdPrinting",
-    category: "Platform / In Development",
-    description: "3Dプリンター所有者と印刷ニーズを持つユーザーをつなぐマッチングプラットフォーム。",
+    category: "Platform",
+    description: "3Dプリント印刷代行サービス。オンラインで簡単に3Dプリントを依頼できるプラットフォーム。",
     icon: <Printer className="w-12 h-12" />,
     color: "bg-orange-500",
     textColor: "text-white",
-    href: "#"
+    href: "https://crowdprinting.jp/",
+    devPeriod: "開発中"
   },
   {
     id: 5,
-    title: "PoC Development",
-    category: "Rapid Prototyping",
-    description: "アイデアを素早く形に。最短1週間でプロトタイプを開発し、ビジネス検証をスピーディにサポートします。",
-    icon: <Code className="w-12 h-12" />,
+    title: "東京3D不動産",
+    category: "PoC",
+    description: "GoogleMaps APIを活用した、不動産情報を3Dビューでインタラクティブに確認可能なマップ。",
+    icon: <Map className="w-12 h-12" />,
     color: "bg-emerald-600",
     textColor: "text-white",
-    href: "#contact",
-    isContact: true
+    href: "https://tokyo-3d-realestates.vercel.app/",
+    devPeriod: "PoC段階"
+  },
+  {
+    id: 6,
+    title: "Northerns株式会社",
+    category: "Corporate Site",
+    description: "自社コーポレートサイトの設計・開発。Next.js + Tailwind CSSによるモダンなWebサイト。",
+    icon: <Building2 className="w-12 h-12" />,
+    color: "bg-gray-800",
+    textColor: "text-white",
+    href: "https://northerns.vercel.app/"
+  },
+  {
+    id: 7,
+    title: "Yukikaze Technology",
+    category: "Development Case",
+    description: "中高生ロボコンチーム「Yukikaze Technology」公式HPの開発実績。",
+    icon: <Code className="w-12 h-12" />,
+    color: "bg-cyan-600",
+    textColor: "text-white",
+    href: "https://www.yukikaze.tech/"
   }
 ];
 
@@ -180,7 +202,10 @@ export default function ProjectHoverReveal() {
                     transition={{ delay: 0.3 }}
                     className={activeProject.textColor}
                   >
-                    <h4 className="text-3xl font-bold mb-4">{activeProject.title}</h4>
+                    <h4 className="text-3xl font-bold mb-2">{activeProject.title}</h4>
+                    {activeProject.devPeriod && (
+                      <p className="text-sm opacity-70 mb-4 font-medium">{activeProject.devPeriod}</p>
+                    )}
                     <p className="text-lg opacity-90 leading-relaxed">
                       {activeProject.description}
                     </p>
