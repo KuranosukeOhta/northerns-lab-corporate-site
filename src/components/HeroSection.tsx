@@ -63,6 +63,25 @@ export default function HeroSection() {
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer">
               Northerns<span className="inline-block animate-pulse hover:animate-none hover:scale-150 hover:rotate-12 transition-all duration-300 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,211,238,1)]">.</span>
             </h1>
+            
+            {/* Test Variants - Temporary Display */}
+            <div className="flex justify-center gap-12 mt-4 opacity-80 hover:opacity-100 transition-opacity">
+              {/* Variant 2: Playful Bounce */}
+              <div className="text-center">
+                <p className="text-xs text-white/60 mb-1">Pattern 2: Bounce</p>
+                <h2 className="text-4xl font-bold text-white">
+                  N<span className="inline-block hover:animate-bounce transition-all duration-300 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">.</span>
+                </h2>
+              </div>
+
+              {/* Variant 3: Spinning Color */}
+              <div className="text-center">
+                <p className="text-xs text-white/60 mb-1">Pattern 3: Spin</p>
+                <h2 className="text-4xl font-bold text-white">
+                  N<span className="inline-block hover:rotate-[360deg] transition-transform duration-700 ease-in-out bg-gradient-to-r from-pink-500 to-violet-500 hover:from-cyan-400 hover:to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(236,72,153,0.8)] hover:drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">.</span>
+                </h2>
+              </div>
+            </div>
           </div>
           
           {/* Subtitle */}
