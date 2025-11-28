@@ -67,6 +67,7 @@ export default function ProjectHoverReveal() {
     const handleMouseMove = (e: MouseEvent) => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
+        // セクション内の相対位置を計算（スクロール位置は不要、getBoundingClientRectがビューポート相対）
         setMousePosition({
           x: e.clientX - rect.left,
           y: e.clientY - rect.top
@@ -74,11 +75,8 @@ export default function ProjectHoverReveal() {
       }
     };
 
-    const section = sectionRef.current;
-    if (section) {
-      section.addEventListener('mousemove', handleMouseMove);
-      return () => section.removeEventListener('mousemove', handleMouseMove);
-    }
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -91,11 +89,16 @@ export default function ProjectHoverReveal() {
     >
       {/* Mouse Follow Circle Outline */}
       <motion.div
-        className="pointer-events-none absolute w-[120px] h-[120px] rounded-full border-[3px] border-black"
+        className="pointer-events-none absolute rounded-full border-[3px] border-black"
+        style={{
+          width: 120,
+          height: 120,
+          left: mousePosition.x - 60,
+          top: mousePosition.y - 60,
+        }}
         animate={{
-          x: mousePosition.x - 60,
-          y: mousePosition.y - 60,
           opacity: isHovering ? 1 : 0,
+          scale: isHovering ? 1 : 0.8,
         }}
         transition={{
           type: "spring",
