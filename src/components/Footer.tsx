@@ -25,7 +25,7 @@ export default function Footer() {
     <>
       <FooterMarquee />
       <footer className="bg-gray-100 dark:bg-gray-800">
-        <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">
+        <div className="container mx-auto py-6 sm:py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-2">
               <Image 
@@ -37,23 +37,23 @@ export default function Footer() {
               />
               <button 
                 onClick={scrollToTop}
-                className="font-bold text-lg cursor-pointer"
+                className="font-bold text-base sm:text-lg cursor-pointer min-h-[44px] flex items-center"
               >
                 Northerns合同会社
               </button>
             </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400">© 2025 Northerns合同会社 (Northerns LLC) All rights reserved.</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 text-center md:text-left">© 2025 Northerns合同会社 (Northerns LLC) All rights reserved.</p>
           </div>
-          <nav className="flex gap-4 sm:gap-6 mt-4 md:mt-0">
+          <nav className="flex gap-1 sm:gap-4 mt-2 md:mt-0">
             <button 
               onClick={() => scrollToSection('news')}
-              className="text-sm hover:underline underline-offset-4 cursor-pointer"
+              className="text-sm hover:underline underline-offset-4 cursor-pointer px-3 py-2 min-h-[44px] flex items-center"
             >
               プレスリリース
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-sm hover:underline underline-offset-4 cursor-pointer"
+              className="text-sm hover:underline underline-offset-4 cursor-pointer px-3 py-2 min-h-[44px] flex items-center"
             >
               お問い合わせ
             </button>

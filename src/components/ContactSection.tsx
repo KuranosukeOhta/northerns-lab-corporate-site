@@ -71,40 +71,40 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full py-24 md:py-32 bg-white relative">
+    <section id="contact" className="w-full py-16 sm:py-24 md:py-32 bg-white relative">
       <div className="container px-4 md:px-6 mx-auto max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24">
           
           {/* Left Column: Message */}
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-4">Contact</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+            <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-3 sm:mb-4">Contact</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-8">
               お問い合わせ
             </h2>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
-              プロジェクトのご相談、お見積もり依頼、協業のご提案など、お気軽にお問い合わせください。<br />
+            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed">
+              プロジェクトのご相談、お見積もり依頼、協業のご提案など、お気軽にお問い合わせください。<br className="hidden sm:block" />
               私たちのチームが、あなたのビジネスの成長をサポートします。
             </p>
             
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                  <CheckCircle className="w-6 h-6 text-gray-700" />
+            <div className="space-y-5 sm:space-y-8">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">無料相談実施中</h4>
-                  <p className="text-gray-600">
+                  <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1">無料相談実施中</h4>
+                  <p className="text-sm sm:text-base text-gray-600">
                     初回ヒアリングは無料です。具体的な要件が決まっていなくてもご相談いただけます。
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                 <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                  <CheckCircle className="w-6 h-6 text-gray-700" />
+              <div className="flex items-start gap-3 sm:gap-4">
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">迅速な対応</h4>
-                  <p className="text-gray-600">
+                  <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1">迅速な対応</h4>
+                  <p className="text-sm sm:text-base text-gray-600">
                     通常2営業日以内に担当者よりご連絡いたします。
                   </p>
                 </div>
@@ -113,9 +113,9 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Form */}
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-10 shadow-lg border border-gray-100">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-gray-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-lg border border-gray-100">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label htmlFor="fullName" className="text-sm font-medium text-gray-700">
                     お名前 <span className="text-red-500">*</span>
@@ -125,7 +125,7 @@ export default function ContactSection() {
                     id="fullName"
                     name="fullName"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white text-base min-h-[48px]"
                     placeholder="山田 太郎"
                     value={formData.fullName}
                     onChange={handleInputChange}
@@ -139,7 +139,7 @@ export default function ContactSection() {
                     type="text"
                     id="company"
                     name="company"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white text-base min-h-[48px]"
                     placeholder="株式会社〇〇"
                     value={formData.company}
                     onChange={handleInputChange}
@@ -156,7 +156,7 @@ export default function ContactSection() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white text-base min-h-[48px]"
                   placeholder="example@company.com"
                   value={formData.email}
                   onChange={handleInputChange}
@@ -172,7 +172,7 @@ export default function ContactSection() {
                     id="service"
                     name="service"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white appearance-none cursor-pointer text-base min-h-[48px]"
                     value={formData.service}
                     onChange={handleInputChange}
                   >
@@ -198,8 +198,8 @@ export default function ContactSection() {
                   id="message"
                   name="message"
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white resize-none"
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 outline-none transition-all bg-white resize-none text-base"
                   placeholder="お問い合わせ内容をご記入ください"
                   value={formData.message}
                   onChange={handleInputChange}
@@ -209,7 +209,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-black text-white font-bold py-4 rounded-xl hover:bg-gray-800 transform hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-black text-white font-bold py-3 sm:py-4 rounded-xl hover:bg-gray-800 active:bg-gray-900 transform hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] sm:min-h-[56px] text-base"
               >
                 {isSubmitting ? (
                   <span>送信中...</span>
@@ -222,15 +222,15 @@ export default function ContactSection() {
               </button>
 
               {submitStatus.type === 'success' && (
-                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
+                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl flex items-start sm:items-center gap-2 text-sm sm:text-base">
+                  <CheckCircle className="w-5 h-5 shrink-0 mt-0.5 sm:mt-0" />
                   <span>{submitStatus.message}</span>
                 </div>
               )}
               
               {submitStatus.type === 'error' && (
-                <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5" />
+                <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl flex items-start sm:items-center gap-2 text-sm sm:text-base">
+                  <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 sm:mt-0" />
                   <span>{submitStatus.message}</span>
                 </div>
               )}

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Camera, Globe, Code, Printer, ArrowRight, Building2, Bot, Map } from "lucide-react";
+import { Camera, Globe, Code, Printer, ArrowRight, Building2, Bot, Map, ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -10,7 +10,7 @@ const projects = [
     title: "AIポストラボ",
     category: "AIを活用したSNS運用支援ツール",
     description: "X(旧Twitter)等のSNS運用をサポートするソフトウェア。AIを活用することにより投稿文章の作成をサポートします。",
-    icon: <Bot className="w-12 h-12" />,
+    icon: <Bot className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-blue-600",
     textColor: "text-white",
     href: "https://www.aipostlab.net/",
@@ -22,7 +22,7 @@ const projects = [
     title: "LocalizeJapan",
     category: "YouTube動画の翻訳・吹替サービス",
     description: "海外コンテンツの日本語ローカライズに特化した、YouTube動画の翻訳・吹き替えサービス。",
-    icon: <Globe className="w-12 h-12" />,
+    icon: <Globe className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-indigo-600",
     textColor: "text-white",
     href: "https://www.localizejapan.com/",
@@ -33,7 +33,7 @@ const projects = [
     title: "3Dバーチャルツアー制作代行",
     category: "Matterportによる空間撮影サービス",
     description: "Matterportを活用した、没入感のある不動産・施設の3Dバーチャルツアー撮影サービス。",
-    icon: <Camera className="w-12 h-12" />,
+    icon: <Camera className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-gray-900",
     textColor: "text-white",
     href: "https://matterport-service-hp.vercel.app/",
@@ -44,7 +44,7 @@ const projects = [
     title: "CrowdPrinting",
     category: "3Dプリント印刷代行プラットフォーム",
     description: "3Dプリント印刷代行サービス。オンラインで簡単に3Dプリントを依頼できるプラットフォーム。",
-    icon: <Printer className="w-12 h-12" />,
+    icon: <Printer className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-orange-500",
     textColor: "text-white",
     href: "https://crowdprinting.jp/",
@@ -56,7 +56,7 @@ const projects = [
     title: "東京3D不動産",
     category: "3Dマップで不動産を探せるWebアプリ",
     description: "GoogleMaps APIを活用した、不動産情報を3Dビューでインタラクティブに確認可能なマップ。",
-    icon: <Map className="w-12 h-12" />,
+    icon: <Map className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-emerald-600",
     textColor: "text-white",
     href: "https://tokyo-3d-realestates.vercel.app/",
@@ -68,7 +68,7 @@ const projects = [
     title: "Northerns合同会社",
     category: "自社コーポレートサイトの構築",
     description: "自社コーポレートサイトの設計・開発。Next.js + Tailwind CSSによるモダンなWebサイト。",
-    icon: <Building2 className="w-12 h-12" />,
+    icon: <Building2 className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-gray-800",
     textColor: "text-white",
     href: "https://northerns.vercel.app/",
@@ -79,7 +79,7 @@ const projects = [
     title: "Yukikaze Technology",
     category: "中高生ロボコンチームの公式HP制作",
     description: "中高生ロボコンチーム「Yukikaze Technology」公式HPの開発実績。",
-    icon: <Code className="w-12 h-12" />,
+    icon: <Code className="w-8 h-8 sm:w-12 sm:h-12" />,
     color: "bg-cyan-600",
     textColor: "text-white",
     href: "https://www.yukikaze.tech/",
@@ -94,6 +94,7 @@ export default function ProjectHoverReveal() {
   const [lockedProject, setLockedProject] = useState<typeof projects[0] | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   // 表示するプロジェクト（ロック中はロックされたもの、そうでなければホバー中のもの）
@@ -103,6 +104,7 @@ export default function ProjectHoverReveal() {
     const filtered = projects.filter(p => p.type === activeTab);
     setActiveProject(filtered[0]);
     setLockedProject(null); // タブ切り替え時はロック解除
+    setExpandedMobile(null); // モバイル展開もリセット
   }, [activeTab]);
 
   useEffect(() => {
@@ -124,13 +126,13 @@ export default function ProjectHoverReveal() {
     <section
       id="projects"
       ref={sectionRef}
-      className="w-full py-24 md:py-32 bg-white overflow-hidden relative"
+      className="w-full py-16 sm:py-24 md:py-32 bg-white overflow-hidden relative"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Mouse Follow Circle Outline */}
+      {/* Mouse Follow Circle Outline - デスクトップのみ */}
       <motion.div
-        className="pointer-events-none absolute rounded-full border-[3px] border-black"
+        className="pointer-events-none absolute rounded-full border-[3px] border-black hidden lg:block"
         style={{
           width: 120,
           height: 120,
@@ -150,37 +152,39 @@ export default function ProjectHoverReveal() {
       />
 
       <div className="container px-4 md:px-6 mx-auto max-w-7xl relative z-10">
-        <div className="mb-12 text-center md:text-left">
-          <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-4">Services & Projects</p>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-gray-900 mb-6">
+        <div className="mb-8 sm:mb-12 text-center md:text-left">
+          <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-3 sm:mb-4">Services & Projects</p>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tighter text-gray-900 mb-4 sm:mb-6">
             事業・実績一覧
           </h2>
-          <p className="text-gray-600 max-w-2xl text-lg">
+          <p className="text-gray-600 max-w-2xl text-base sm:text-lg mx-auto md:mx-0">
             これまでの開発実績をご紹介します。
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-10">
+        <div className="flex gap-2 mb-6 sm:mb-10 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <button
             onClick={() => setActiveTab("service")}
-            className={`px-6 py-3 rounded-full font-bold text-sm transition-all cursor-pointer ${activeTab === "service" ? 'bg-black text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-bold text-sm transition-all cursor-pointer whitespace-nowrap min-h-[44px] ${activeTab === "service" ? 'bg-black text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300 active:bg-gray-400'}`}
           >
             自社サービス
           </button>
           <button
             onClick={() => setActiveTab("case")}
-            className={`px-6 py-3 rounded-full font-bold text-sm transition-all cursor-pointer ${activeTab === "case" ? 'bg-black text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-bold text-sm transition-all cursor-pointer whitespace-nowrap min-h-[44px] ${activeTab === "case" ? 'bg-black text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300 active:bg-gray-400'}`}
           >
             開発実績
           </button>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Project List */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             {filteredProjects.map((project) => {
               const isActive = displayProject.id === project.id;
+              const isMobileExpanded = expandedMobile === project.id;
+              
               return (
                 <motion.div
                   key={project.id}
@@ -189,41 +193,83 @@ export default function ProjectHoverReveal() {
                   transition={{ duration: 0.3 }}
                   className="cursor-pointer"
                   onMouseEnter={() => {
-                    if (!lockedProject) {
+                    if (!lockedProject && window.innerWidth >= 1024) {
                       setActiveProject(project);
                     }
                   }}
                   onClick={() => {
-                    // 同じプロジェクトをクリックしたらロック解除、違うならロック
-                    if (lockedProject?.id === project.id) {
-                      setLockedProject(null);
+                    // モバイルではタップで展開/閉じる
+                    if (window.innerWidth < 1024) {
+                      setExpandedMobile(isMobileExpanded ? null : project.id);
                     } else {
-                      setLockedProject(project);
+                      // デスクトップでは従来のロック動作
+                      if (lockedProject?.id === project.id) {
+                        setLockedProject(null);
+                      } else {
+                        setLockedProject(project);
+                      }
                     }
                   }}
                 >
-                  <div className={`flex items-center justify-between border-b py-6 transition-colors duration-300 ${isActive ? 'border-black' : 'border-gray-200 hover:border-black'}`}>
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <p className={`text-sm transition-colors ${isActive ? 'text-black' : 'text-gray-500'}`}>{project.category}</p>
-                        {project.devPeriod && (
-                          <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${isActive ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'}`}>
-                            {project.devPeriod}
-                          </span>
-                        )}
+                  <div className={`border-b py-4 sm:py-6 transition-colors duration-300 ${isActive || isMobileExpanded ? 'border-black' : 'border-gray-200 hover:border-black'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 min-w-0 pr-4">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                          <p className={`text-xs sm:text-sm transition-colors ${isActive || isMobileExpanded ? 'text-black' : 'text-gray-500'}`}>{project.category}</p>
+                          {project.devPeriod && (
+                            <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${isActive || isMobileExpanded ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              {project.devPeriod}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className={`text-xl sm:text-2xl md:text-4xl font-bold transition-colors duration-300 ${isActive || isMobileExpanded ? 'text-black' : 'text-gray-300'}`}>
+                          {project.title}
+                        </h3>
                       </div>
-                      <h3 className={`text-2xl md:text-4xl font-bold transition-colors duration-300 ${isActive ? 'text-black' : 'text-gray-300'}`}>
-                        {project.title}
-                      </h3>
+                      <ArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 transition-all duration-300 ${isActive || isMobileExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} ${isMobileExpanded ? 'rotate-90' : ''}`} />
                     </div>
-                    <ArrowRight className={`w-6 h-6 shrink-0 transition-all duration-300 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`} />
+                    
+                    {/* モバイル用展開コンテンツ */}
+                    <AnimatePresence>
+                      {isMobileExpanded && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="lg:hidden overflow-hidden"
+                        >
+                          <div className={`mt-4 p-4 sm:p-6 rounded-2xl ${project.color}`}>
+                            <div className="flex items-start gap-4">
+                              <div className={`p-3 bg-white/10 backdrop-blur-md rounded-full shrink-0 ${project.textColor}`}>
+                                {project.icon}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className={`text-sm sm:text-base leading-relaxed mb-4 ${project.textColor} opacity-90`}>
+                                  {project.description}
+                                </p>
+                                <a
+                                  href={project.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-black rounded-full font-bold text-sm hover:bg-gray-100 active:bg-gray-200 transition-colors min-h-[44px]"
+                                >
+                                  サイトを見る <ExternalLink className="w-4 h-4" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               );
             })}
           </div>
 
-          {/* Preview Area (Sticky) */}
+          {/* Preview Area (Sticky) - デスクトップのみ */}
           <div className="hidden lg:block sticky top-32 h-[500px] w-full">
             <AnimatePresence mode="wait">
               <motion.div

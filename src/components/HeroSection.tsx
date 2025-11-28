@@ -27,7 +27,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden py-16 sm:py-0">
       {/* 背景動画 */}
       {isMounted && (
         <video
@@ -48,31 +48,31 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gray-900/50" style={{ zIndex: 1 }}></div>
       
       {/* Content Card */}
-      <div className="relative p-8 md:p-16 max-w-6xl mx-4 w-full overflow-hidden" style={{ zIndex: 10 }}>
+      <div className="relative px-4 sm:px-8 md:p-16 max-w-6xl mx-auto w-full overflow-hidden" style={{ zIndex: 10 }}>
         <div className="relative z-20 text-center">
           {/* Northerns Logo */}
-          <div className="mb-8 transform hover:scale-105 transition-transform duration-700">
-            <h1 className="text-[4.6875rem] sm:text-[5.625rem] md:text-[7.5rem] lg:text-[12.5rem] font-bold text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer" style={{ letterSpacing: '-0.03em' }}>
+          <div className="mb-4 sm:mb-8 transform hover:scale-105 transition-transform duration-700">
+            <h1 className="text-[3rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7.5rem] lg:text-[12.5rem] font-bold text-white leading-none drop-shadow-2xl hover:scale-110 transition-all duration-500 ease-out cursor-pointer" style={{ letterSpacing: '-0.03em' }}>
               Northerns<span className="inline-block animate-pulse hover:animate-none hover:scale-150 hover:rotate-12 transition-all duration-300 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,211,238,1)]">.</span>
             </h1>
           </div>
           
           {/* Subtitle */}
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6 drop-shadow-lg leading-relaxed">
             多様なプロジェクトで<br />新たな価値を創造します
           </h2>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-6 sm:mt-10 px-4 sm:px-0">
             <button 
               onClick={() => scrollTo('projects')} 
-              className="px-8 py-4 font-bold text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 group bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] rounded-full"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-bold text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 group bg-white/10 border border-white/20 text-white hover:bg-white/20 active:bg-white/30 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] rounded-full min-h-[48px]"
             >
               事業一覧 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={() => scrollTo('contact')} 
-              className="px-8 py-4 font-bold text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 group bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-white/40 rounded-full"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-bold text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 group bg-transparent border border-white/20 text-white hover:bg-white/5 active:bg-white/10 hover:border-white/40 rounded-full min-h-[48px]"
             >
               お問い合わせ
             </button>
@@ -81,7 +81,7 @@ export default function HeroSection() {
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 animate-bounce" style={{ zIndex: 10 }}>
+      <div className="absolute bottom-4 sm:bottom-8 animate-bounce" style={{ zIndex: 10 }}>
         <ChevronDown className="w-6 h-6 text-white/50" />
       </div>
     </section>

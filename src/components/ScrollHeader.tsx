@@ -56,14 +56,14 @@ export default function ScrollHeader() {
           : '-translate-y-full opacity-0'
       }`}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <a className="transition-colors duration-300 hover:opacity-80" href="#">
+      <div className="container mx-auto flex h-14 sm:h-16 items-center justify-between px-4 md:px-6">
+        <a className="transition-colors duration-300 hover:opacity-80 min-h-[44px] flex items-center" href="#">
           <Image 
             src="/favicon.svg" 
             alt="Northerns Logo" 
             width={32} 
             height={32} 
-            className="w-8 h-8"
+            className="w-7 h-7 sm:w-8 sm:h-8"
           />
         </a>
         
@@ -77,7 +77,7 @@ export default function ScrollHeader() {
               });
             }
           }}
-          className="transition-all duration-300 hover:scale-105"
+          className="transition-all duration-300 hover:scale-105 active:scale-100 min-h-[44px] px-4 sm:px-6 text-sm"
         >
           お問い合わせ
         </Button>
