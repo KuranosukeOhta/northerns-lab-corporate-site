@@ -1,5 +1,4 @@
 import { NEWS_ITEMS } from "@/lib/news-data";
-import NewsMinimalList from "@/components/news/NewsMinimalList";
 import NewsParallaxTimeline from "@/components/news/NewsParallaxTimeline";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -24,40 +23,11 @@ export default function NewsPage() {
             </p>
         </header>
 
-        {/* Proposal 2: Kinetic Minimal List */}
-        <section className="mb-32">
-            <div className="flex items-center justify-between mb-12 border-b pb-4">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                    <span className="bg-gray-900 text-white text-xs px-2 py-1 rounded">Pattern A</span>
-                    Kinetic Minimal List
-                </h2>
-                <p className="text-sm text-gray-500 hidden md:block">
-                    Hover over items to see preview
-                </p>
-            </div>
-            
-            <NewsMinimalList items={NEWS_ITEMS} />
-        </section>
-
-        {/* Separator */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-24" />
-
-        {/* Proposal 3: Parallax Timeline */}
+        {/* Main Content: Parallax Timeline */}
         <section className="mb-24">
-            <div className="flex items-center justify-between mb-12 border-b pb-4">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                    <span className="bg-gray-900 text-white text-xs px-2 py-1 rounded">Pattern B</span>
-                    Parallax Timeline
-                </h2>
-                <p className="text-sm text-gray-500 hidden md:block">
-                    Scroll to see animation
-                </p>
-            </div>
-
             <NewsParallaxTimeline items={NEWS_ITEMS} />
         </section>
       </div>
     </div>
   );
 }
-

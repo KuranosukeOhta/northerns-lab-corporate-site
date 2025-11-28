@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { NewsItem } from "@/lib/news-data";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface NewsParallaxTimelineProps {
   items: NewsItem[];
@@ -84,34 +85,35 @@ function TimelineItem({ item, index, isLeft }: { item: NewsItem, index: number, 
             {item.summary}
           </p>
           <div className={`mt-4 flex ${isLeft ? "md:justify-end" : "md:justify-start"}`}>
-            <button className="group inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors">
+            <Link href={`/news/${item.id}`} className="group inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors">
               Read Article <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* 画像エリア (オプション) */}
       <div className={`w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0 hidden md:block`}>
-         {item.imageUrl ? (
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-md group hover:shadow-lg transition-shadow">
-                <Image 
-                    src={item.imageUrl} 
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 hover:scale-105"
-                />
-            </div>
-         ) : (
-            // 画像がない場合のプレースホルダー的なデザイン要素
-            <div className="w-full h-full min-h-[180px] rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-300">
-                <div className="text-center">
-                    <span className="block text-4xl mb-2 font-thin opacity-20">LOGO</span>
+         <Link href={`/news/${item.id}`}>
+             {item.imageUrl ? (
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-md group hover:shadow-lg transition-shadow cursor-pointer">
+                    <Image 
+                        src={item.imageUrl} 
+                        alt={item.title}
+                        fill
+                        className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
                 </div>
-            </div>
-         )}
+             ) : (
+                // 画像がない場合のプレースホルダー的なデザイン要素
+                <div className="w-full h-full min-h-[180px] rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-300 hover:border-gray-400 transition-colors cursor-pointer">
+                    <div className="text-center">
+                        <span className="block text-4xl mb-2 font-thin opacity-20">LOGO</span>
+                    </div>
+                </div>
+             )}
+         </Link>
       </div>
     </motion.div>
   );
 }
-
