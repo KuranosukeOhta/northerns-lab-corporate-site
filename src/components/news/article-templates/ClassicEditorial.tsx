@@ -62,11 +62,9 @@ export default function ClassicEditorial({ item, content }: ArticleTemplateProps
                 {item.summary} ここはリード文が入ります。記事の要約や導入部分として、読者の興味を惹きつける重要なセクションです。
              </p>
 
-             <div className="first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:mr-3 first-letter:float-left">
-                <p>
-                    本文がここから始まります。クラシックなエディトリアルデザインでは、最初の文字を大きくする「ドロップキャップ」という手法がよく使われます。これにより、視線が自然と文章の開始位置に誘導され、読み始めやすくなります。
-                </p>
-             </div>
+             <p>
+                本文がここから始まります。シンプルで洗練されたレイアウトにより、視線が自然と文章の開始位置に誘導され、読み始めやすくなります。
+             </p>
 
              <p>
                 テキストの読みやすさを重視し、適切な行間と文字サイズを設定しています。サイトのトーンに合わせてサンセリフ体を使用し、モダンでクリーンな印象を与え、長文でも疲れにくいデザインを目指しています。
