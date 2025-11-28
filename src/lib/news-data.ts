@@ -19,14 +19,6 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop',
   },
   {
-    id: '2',
-    date: '2025.01.10',
-    category: 'Info',
-    title: 'LocalizeJapan：翻訳実績100本突破',
-    summary: 'YouTube動画の翻訳・吹替サービス「LocalizeJapan」が、サービス開始から翻訳実績100本を突破しました。海外コンテンツの日本語ローカライズ需要の高まりを受け、今後もクオリティの高い翻訳サービスを提供してまいります。',
-    imageUrl: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2670&auto=format&fit=crop',
-  },
-  {
     id: '3',
     date: '2024.12.25',
     category: 'Tech Blog',
