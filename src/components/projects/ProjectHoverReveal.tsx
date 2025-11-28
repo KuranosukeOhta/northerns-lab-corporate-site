@@ -8,7 +8,7 @@ const projects = [
   {
     id: 1,
     title: "AIポストラボ",
-    category: "SaaS",
+    category: "AIを活用したSNS運用支援ツール",
     description: "X(旧Twitter)等のSNS運用をサポートするソフトウェア。AIを活用することにより投稿文章の作成をサポートします。",
     icon: <Bot className="w-12 h-12" />,
     color: "bg-blue-600",
@@ -19,7 +19,7 @@ const projects = [
   {
     id: 2,
     title: "LocalizeJapan",
-    category: "Localization",
+    category: "YouTube動画の翻訳・吹替サービス",
     description: "海外コンテンツの日本語ローカライズに特化した、YouTube動画の翻訳・吹き替えサービス。",
     icon: <Globe className="w-12 h-12" />,
     color: "bg-indigo-600",
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 3,
     title: "3Dバーチャルツアー制作代行",
-    category: "Spatial Computing",
+    category: "Matterportによる空間撮影サービス",
     description: "Matterportを活用した、没入感のある不動産・施設の3Dバーチャルツアー撮影サービス。",
     icon: <Camera className="w-12 h-12" />,
     color: "bg-gray-900",
@@ -39,7 +39,7 @@ const projects = [
   {
     id: 4,
     title: "CrowdPrinting",
-    category: "Platform",
+    category: "3Dプリント印刷代行プラットフォーム",
     description: "3Dプリント印刷代行サービス。オンラインで簡単に3Dプリントを依頼できるプラットフォーム。",
     icon: <Printer className="w-12 h-12" />,
     color: "bg-orange-500",
@@ -50,7 +50,7 @@ const projects = [
   {
     id: 5,
     title: "東京3D不動産",
-    category: "PoC",
+    category: "3Dマップで不動産を探せるWebアプリ",
     description: "GoogleMaps APIを活用した、不動産情報を3Dビューでインタラクティブに確認可能なマップ。",
     icon: <Map className="w-12 h-12" />,
     color: "bg-emerald-600",
@@ -61,7 +61,7 @@ const projects = [
   {
     id: 6,
     title: "Northerns株式会社",
-    category: "Corporate Site",
+    category: "自社コーポレートサイトの構築",
     description: "自社コーポレートサイトの設計・開発。Next.js + Tailwind CSSによるモダンなWebサイト。",
     icon: <Building2 className="w-12 h-12" />,
     color: "bg-gray-800",
@@ -71,7 +71,7 @@ const projects = [
   {
     id: 7,
     title: "Yukikaze Technology",
-    category: "Development Case",
+    category: "中高生ロボコンチームの公式HP制作",
     description: "中高生ロボコンチーム「Yukikaze Technology」公式HPの開発実績。",
     icon: <Code className="w-12 h-12" />,
     color: "bg-cyan-600",
