@@ -181,7 +181,6 @@ export default function ProjectHoverReveal() {
           <div className="space-y-2">
             {filteredProjects.map((project) => {
               const isActive = displayProject.id === project.id;
-              const isLocked = lockedProject?.id === project.id;
               return (
                 <motion.div
                   key={project.id}
@@ -210,11 +209,6 @@ export default function ProjectHoverReveal() {
                         {project.devPeriod && (
                           <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${isActive ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'}`}>
                             {project.devPeriod}
-                          </span>
-                        )}
-                        {isLocked && (
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500 text-white">
-                            固定中
                           </span>
                         )}
                       </div>
