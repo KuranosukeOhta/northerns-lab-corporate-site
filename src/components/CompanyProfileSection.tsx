@@ -43,7 +43,7 @@ export default function CompanyProfileSection() {
             <div className="divide-y divide-gray-100">
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
                 <span className="text-sm font-bold text-gray-400 uppercase tracking-wider w-32 shrink-0">会社名</span>
-                <span className="text-gray-900 font-medium">Northerns株式会社 (Northerns Inc.)</span>
+                <span className="text-gray-900 font-medium">Northerns株式会社<br /><span className="text-gray-500 text-sm">(Northerns Inc.)</span></span>
               </div>
               
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
