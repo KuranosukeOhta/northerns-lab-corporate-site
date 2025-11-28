@@ -10,13 +10,13 @@ export default function FooterMarquee() {
         <MarqueeRow 
           direction="left" 
           text="NORTHERNS INC." 
-          duration={50} 
+          duration={75} 
           textSize="text-[13vw] md:text-[12vw]"
         />
         <MarqueeRow 
           direction="left" 
           text="NORTHERNS INC." 
-          duration={50} 
+          duration={75} 
           textSize="text-[13vw] md:text-[12vw]"
         />
       </div>
