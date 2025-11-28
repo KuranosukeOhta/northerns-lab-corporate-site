@@ -47,13 +47,14 @@ const projects = [
   },
   {
     id: 5,
-    title: "Local Business DX",
-    category: "Consulting",
-    description: "地域企業のデジタル化を包括的にサポート。Webサイト制作からSNS運用、業務効率化まで。",
+    title: "PoC Development",
+    category: "Rapid Prototyping",
+    description: "アイデアを素早く形に。最短1週間でプロトタイプを開発し、ビジネス検証をスピーディにサポートします。",
     icon: <Code className="w-12 h-12" />,
     color: "bg-emerald-600",
     textColor: "text-white",
-    href: "#"
+    href: "#contact",
+    isContact: true
   }
 ];
 
@@ -185,17 +186,34 @@ export default function ProjectHoverReveal() {
                     </p>
                   </motion.div>
 
-                  <motion.a
-                    href={activeProject.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center gap-2"
-                  >
-                    View Project <ArrowRight className="w-4 h-4" />
-                  </motion.a>
+                  {activeProject.isContact ? (
+                    <motion.button
+                      onClick={() => {
+                        const element = document.getElementById('contact');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                      Contact <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  ) : (
+                    <motion.a
+                      href={activeProject.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center gap-2"
+                    >
+                      View Project <ArrowRight className="w-4 h-4" />
+                    </motion.a>
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
