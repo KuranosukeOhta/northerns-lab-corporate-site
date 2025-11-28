@@ -48,7 +48,7 @@ export default function CompanyProfileSection() {
               
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
                 <span className="text-sm font-bold text-gray-400 uppercase tracking-wider w-32 shrink-0">設立</span>
-                <span className="text-gray-900 font-medium">202X年 X月</span>
+                <span className="text-gray-900 font-medium">2025年 12月</span>
               </div>
 
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
