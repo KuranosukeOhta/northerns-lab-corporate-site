@@ -1,18 +1,20 @@
 "use client";
 
 import HeroSection from "@/components/HeroSection";
-import ProjectsSection from "@/components/ProjectsSection";
 import ProjectHoverReveal from "@/components/projects/ProjectHoverReveal";
-import ProjectStickyStack from "@/components/projects/ProjectStickyStack";
-import ProjectSpotlightGrid from "@/components/projects/ProjectSpotlightGrid";
 import SupportFlowSection from "@/components/SupportFlowSection";
 import CompanyProfileSection from "@/components/CompanyProfileSection";
 import ContactSection from "@/components/ContactSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { NEWS_ITEMS } from "@/lib/news-data";
 
 export default function Home() {
+  // 最新のニュースを取得
+  const latestNews = NEWS_ITEMS[0];
+
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-gray-900 selection:text-white">
       <main className="flex-1">
@@ -20,18 +22,7 @@ export default function Home() {
         <HeroSection />
 
         {/* Projects Section */}
-        <ProjectsSection />
-
-        {/* Experimental Project Sections */}
-        <div className="w-full bg-gray-900 text-white py-8 text-center">
-          <h3 className="text-2xl font-bold">👇 以下、新デザイン案のテスト配置 👇</h3>
-        </div>
         <ProjectHoverReveal />
-        <ProjectStickyStack />
-        <ProjectSpotlightGrid />
-        <div className="w-full bg-gray-900 text-white py-8 text-center">
-          <h3 className="text-2xl font-bold">👆 テスト配置終了 👆</h3>
-        </div>
         
         {/* Support Flow Section */}
         <SupportFlowSection />
@@ -53,32 +44,43 @@ export default function Home() {
 
             <div className="grid gap-8">
               {/* Featured News Item */}
-              <Card className="group bg-white border-0 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden rounded-3xl">
-                <div className="grid md:grid-cols-2 gap-0">
-                  <div className="relative aspect-video md:aspect-auto bg-gray-200 overflow-hidden">
-                    {/* Placeholder for news image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-800 group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <CardContent className="p-8 md:p-12 flex flex-col justify-center">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-sm font-medium text-gray-500">2025.01.14</span>
-                      <span className="px-3 py-1 text-xs font-semibold bg-gray-100 text-gray-600 rounded-full">Press Release</span>
+              {latestNews && (
+                <Link href={`/news/${latestNews.id}`}>
+                  <Card className="group bg-white border-0 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden rounded-3xl cursor-pointer h-full">
+                    <div className="grid md:grid-cols-2 gap-0 h-full">
+                      <div className="relative aspect-video md:aspect-auto bg-gray-200 overflow-hidden min-h-[250px]">
+                        {latestNews.imageUrl ? (
+                           <Image
+                             src={latestNews.imageUrl}
+                             alt={latestNews.title}
+                             fill
+                             className="object-cover group-hover:scale-105 transition-transform duration-700"
+                           />
+                        ) : (
+                           <div className="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-800 group-hover:scale-105 transition-transform duration-700" />
+                        )}
+                      </div>
+                      <CardContent className="p-8 md:p-12 flex flex-col justify-center">
+                        <div className="flex items-center gap-4 mb-4">
+                          <span className="text-sm font-medium text-gray-500">{latestNews.date}</span>
+                          <span className="px-3 py-1 text-xs font-semibold bg-gray-100 text-gray-600 rounded-full">{latestNews.category}</span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
+                          {latestNews.title}
+                        </h3>
+                        <p className="text-gray-600 mb-8 leading-relaxed line-clamp-3">
+                          {latestNews.summary}
+                        </p>
+                        <div>
+                          <span className="inline-flex items-center gap-2 text-black font-semibold border-b border-black pb-0.5 hover:pb-1 transition-all">
+                            Read More
+                          </span>
+                        </div>
+                      </CardContent>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
-                      AI活用事例のご紹介
-                    </h3>
-                    <p className="text-gray-600 mb-8 leading-relaxed">
-                      AI技術を活用したプロジェクトの事例や、企業のデジタル変革支援についてご紹介いたします。
-                      最新の技術トレンドを取り入れたソリューションの詳細をご覧ください。
-                    </p>
-                    <div>
-                      <span className="inline-flex items-center gap-2 text-black font-semibold border-b border-black pb-0.5 hover:pb-1 transition-all cursor-pointer">
-                        Read More
-                      </span>
-                    </div>
-                  </CardContent>
-                </div>
-              </Card>
+                  </Card>
+                </Link>
+              )}
             </div>
             
             <div className="mt-8 md:hidden text-center">
