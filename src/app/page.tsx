@@ -10,6 +10,7 @@ import CompanyProfileSection from "@/components/CompanyProfileSection";
 import ContactSection from "@/components/ContactSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -45,9 +46,9 @@ export default function Home() {
                   最新情報
                 </h2>
               </div>
-              <a href="#" className="hidden md:flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all">
+              <Link href="/news" className="hidden md:flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all">
                 View All News <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
 
             <div className="grid gap-8">
@@ -81,9 +82,9 @@ export default function Home() {
             </div>
             
             <div className="mt-8 md:hidden text-center">
-               <a href="#" className="inline-flex items-center gap-2 text-gray-900 font-semibold">
+               <Link href="/news" className="inline-flex items-center gap-2 text-gray-900 font-semibold">
                 View All News <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
