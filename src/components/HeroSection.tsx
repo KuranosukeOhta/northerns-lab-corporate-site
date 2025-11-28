@@ -49,9 +49,6 @@ export default function HeroSection() {
       
       {/* Content Card */}
       <div className="relative p-8 md:p-16 max-w-6xl mx-4 w-full overflow-hidden" style={{ zIndex: 10 }}>
-        {/* 光のエフェクト */}
-        <div className="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none"></div>
-        
         <div className="relative z-20 text-center">
           {/* Northerns Logo */}
           <div className="mb-8 transform hover:scale-105 transition-transform duration-700">
