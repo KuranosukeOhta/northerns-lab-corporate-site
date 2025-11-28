@@ -177,12 +177,12 @@ export default function ContactSection() {
                     onChange={handleInputChange}
                   >
                     <option value="">選択してください</option>
-                    <option value="translate">TranslateJapan（翻訳・吹き替え）</option>
-                    <option value="3d-visualization">3D Visualization Services</option>
-                    <option value="local-dx">Local Business DX</option>
-                    <option value="sns-tool">SNS投稿管理ツール</option>
-                    <option value="3d-printing">CrowdPrinting</option>
-                    <option value="other">その他</option>
+                    <option value="new-project">新規プロジェクトのご相談</option>
+                    <option value="estimate">お見積もりのご依頼</option>
+                    <option value="service-inquiry">サービスに関するご質問</option>
+                    <option value="partnership">協業・パートナーシップのご提案</option>
+                    <option value="recruitment">採用・求人について</option>
+                    <option value="other">その他のお問い合わせ</option>
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
