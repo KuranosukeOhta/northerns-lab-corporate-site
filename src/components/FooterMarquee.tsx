@@ -7,14 +7,34 @@ export default function FooterMarquee() {
     <div className="w-full bg-white overflow-hidden py-12 md:py-20 border-t border-gray-100 flex flex-col gap-2 md:gap-4">
       {/* 1行目: 左方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="left" text="NORTHERNS INC." duration={50} />
-        <MarqueeRow direction="left" text="NORTHERNS INC." duration={50} />
+        <MarqueeRow 
+          direction="left" 
+          text="NORTHERNS INC." 
+          duration={50} 
+          textSize="text-[13vw] md:text-[12vw]"
+        />
+        <MarqueeRow 
+          direction="left" 
+          text="NORTHERNS INC." 
+          duration={50} 
+          textSize="text-[13vw] md:text-[12vw]"
+        />
       </div>
       
       {/* 2行目: 右方向へ移動 */}
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" duration={75} />
-        <MarqueeRow direction="right" text="MEET, CONNECT, CREATE" duration={75} />
+        <MarqueeRow 
+          direction="right" 
+          text="MEET, CONNECT, CREATE" 
+          duration={75} 
+          textSize="text-[6vw] md:text-[4vw]"
+        />
+        <MarqueeRow 
+          direction="right" 
+          text="MEET, CONNECT, CREATE" 
+          duration={75} 
+          textSize="text-[6vw] md:text-[4vw]"
+        />
       </div>
     </div>
   );
@@ -24,9 +44,10 @@ interface MarqueeRowProps {
   direction?: "left" | "right";
   text: string;
   duration?: number;
+  textSize?: string;
 }
 
-function MarqueeRow({ direction = "left", text, duration = 50 }: MarqueeRowProps) {
+function MarqueeRow({ direction = "left", text, duration = 50, textSize = "text-[8vw] md:text-[6vw]" }: MarqueeRowProps) {
   const isLeft = direction === "left";
   
   return (
@@ -52,7 +73,7 @@ function MarqueeRow({ direction = "left", text, duration = 50 }: MarqueeRowProps
         return (
           <span 
             key={i}
-            className={`text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter px-4 ${
+            className={`${textSize} font-bold leading-none tracking-tighter px-4 ${
               isGradient 
                 ? `text-transparent bg-clip-text bg-gradient-to-r opacity-90 ${
                     isBlueToOrange ? "from-blue-600 to-orange-500" : "from-orange-500 to-blue-600"
