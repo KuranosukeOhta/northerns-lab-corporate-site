@@ -53,7 +53,7 @@ export default function CompanyProfileSection() {
 
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
                 <span className="text-sm font-bold text-gray-400 uppercase tracking-wider w-32 shrink-0">代表者</span>
-                <span className="text-gray-900 font-medium">代表取締役 大田 蔵之介</span>
+                <span className="text-gray-900 font-medium">代表取締役 太田藏之介</span>
               </div>
 
               <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-4">
