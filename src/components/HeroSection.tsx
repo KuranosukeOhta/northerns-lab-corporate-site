@@ -62,12 +62,6 @@ export default function HeroSection() {
             多様なプロジェクトで<br />新たな価値を創造します
           </h2>
           
-          {/* Description */}
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto font-light">
-            小さく始めて、大きく育てる。<br />
-            最新技術と柔軟な発想で、新しい価値を生み出します。
-          </p>
-          
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <button 
