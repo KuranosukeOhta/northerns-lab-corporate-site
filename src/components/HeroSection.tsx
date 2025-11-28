@@ -71,12 +71,12 @@ export default function HeroSection() {
   return (
     <div className="relative w-full">
       {/* 共通背景動画 (Fixed) */}
-      <div className="fixed inset-0 w-full h-full overflow-hidden -z-50">
+      <div className="fixed inset-0 w-full h-full overflow-hidden" style={{ zIndex: -50 }}>
         {isMounted && (
           <video
             ref={videoRef}
             autoPlay
-            muted
+            muted={true}
             loop
             playsInline
             preload="auto"
@@ -85,8 +85,8 @@ export default function HeroSection() {
             <source src="/background_movie.mp4" type="video/mp4" />
           </video>
         )}
-        {/* 基本のオーバーレイ */}
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* 基本のオーバーレイ - 動画の上に配置 */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
       </div>
 
       {/* Design A: Ethereal Minimal */}
