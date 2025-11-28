@@ -69,9 +69,10 @@ export default function HeroSection() {
   }, [isMounted]);
 
   return (
-    <>
-      {/* 共通背景動画 (Fixed) - 最も外側に配置 */}
-      <div className="fixed inset-0 w-full h-full overflow-hidden" style={{ zIndex: -1 }}>
+    <div className="relative w-full">
+      {/* Design A: Ethereal Minimal */}
+      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* 背景動画 - このセクション専用 */}
         {isMounted && (
           <video
             ref={videoRef}
@@ -80,22 +81,18 @@ export default function HeroSection() {
             loop
             playsInline
             preload="auto"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
           >
             <source src="/background_movie.mp4" type="video/mp4" />
           </video>
         )}
-        {/* 基本のオーバーレイ - 動画の上に配置 */}
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
-      
-      <div className="relative w-full">
-
-      {/* Design A: Ethereal Minimal */}
-      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono">Design A: Ethereal Minimal</div>
+        {/* オーバーレイ */}
+        <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }}></div>
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono" style={{ zIndex: 20 }}>Design A: Ethereal Minimal</div>
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" style={{ zIndex: 2 }}></div>
         
         <div className="relative z-10 container px-4 text-center">
           <div className="mb-6 overflow-hidden">
@@ -132,11 +129,24 @@ export default function HeroSection() {
       </section>
 
       {/* Design B: Glass Prism */}
-      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden backdrop-blur-sm">
-        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono z-20">Design B: Glass Prism</div>
+      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* 背景動画 */}
+        {isMounted && (
+          <video
+            autoPlay
+            muted={true}
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          >
+            <source src="/background_movie.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono" style={{ zIndex: 20 }}>Design B: Glass Prism</div>
         
         {/* 濃いめのオーバーレイでガラスを目立たせる */}
-        <div className="absolute inset-0 bg-gray-900/40"></div>
+        <div className="absolute inset-0 bg-gray-900/50" style={{ zIndex: 1 }}></div>
         
         {/* Glass Card */}
         <div className="relative z-10 p-8 md:p-16 rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.3)] max-w-6xl mx-4 w-full overflow-hidden">
@@ -174,11 +184,24 @@ export default function HeroSection() {
 
       {/* Design C: Tech Grid */}
       <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono z-20">Design C: Tech Grid</div>
+        {/* 背景動画 */}
+        {isMounted && (
+          <video
+            autoPlay
+            muted={true}
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          >
+            <source src="/background_movie.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded text-xs text-white font-mono" style={{ zIndex: 20 }}>Design C: Tech Grid</div>
         
         {/* Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"></div>
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" style={{ zIndex: 2 }}></div>
+        <div className="absolute inset-0 bg-black/50" style={{ zIndex: 1 }}></div>
         
         {/* Decorative Lines */}
         <div className="absolute top-0 left-10 w-px h-full bg-white/10 hidden md:block"></div>
@@ -220,7 +243,6 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-      </div>
-    </>
+    </div>
   );
 }
