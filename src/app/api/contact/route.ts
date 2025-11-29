@@ -186,11 +186,8 @@ function createUserEmailHtml(data: {
       </div>
       
       <div style="background-color: #1f2937; padding: 30px; text-align: center;">
-        <p style="color: #ffffff; font-size: 14px; font-weight: 600; margin: 0 0 10px 0;">
+        <p style="color: #ffffff; font-size: 14px; font-weight: 600; margin: 0;">
           Northerns合同会社 (Northerns LLC)
-        </p>
-        <p style="color: #9ca3af; font-size: 12px; margin: 0 0 5px 0;">
-          〒060-0001 北海道札幌市中央区北1条西1丁目
         </p>
         <p style="color: #9ca3af; font-size: 11px; margin: 15px 0 0 0;">
           ※ このメールは自動送信されています。<br>
@@ -296,6 +293,10 @@ export async function POST(request: NextRequest) {
       to: sanitizedData.email,
       from: {
         email: process.env.FROM_EMAIL,
+        name: 'Northerns合同会社',
+      },
+      replyTo: {
+        email: process.env.ADMIN_EMAIL,
         name: 'Northerns合同会社',
       },
       subject: '【Northerns合同会社】お問い合わせを受け付けました',
