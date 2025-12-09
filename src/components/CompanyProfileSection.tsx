@@ -10,10 +10,10 @@ export default function CompanyProfileSection() {
           <div>
             <p className="text-sm font-bold tracking-wider text-gray-500 uppercase mb-3 sm:mb-4">Company</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-8">
-              会社概要
+              事業者概要
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
-              Northerns合同会社（Northerns LLC）は、北海道札幌市で設立されたテックカンパニーです。<br className="hidden sm:block" />
+              Northerns（ノーザンズ）は、北海道札幌市で設立されたテックカンパニーです。<br className="hidden sm:block" />
               「北の大地から、世界へ」をテーマに、デジタルの力で地域と世界をつなぐ架け橋となります。
             </p>
             <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 inline-block w-full sm:w-auto">
@@ -42,12 +42,17 @@ export default function CompanyProfileSection() {
           <div className="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="divide-y divide-gray-100">
               <div className="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider w-full sm:w-32 shrink-0">会社名</span>
-                <span className="text-sm sm:text-base text-gray-900 font-medium">Northerns合同会社<br /><span className="text-gray-500 text-xs sm:text-sm">(Northerns LLC)</span></span>
+                <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider w-full sm:w-32 shrink-0">屋号</span>
+                <span className="text-sm sm:text-base text-gray-900 font-medium">Northerns（ノーザンズ）</span>
+              </div>
+
+              <div className="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+                <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider w-full sm:w-32 shrink-0">代表者</span>
+                <span className="text-sm sm:text-base text-gray-900 font-medium">太田 藏之介</span>
               </div>
               
               <div className="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider w-full sm:w-32 shrink-0">設立</span>
+                <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider w-full sm:w-32 shrink-0">開業</span>
                 <span className="text-sm sm:text-base text-gray-900 font-medium">2025年 12月</span>
               </div>
 

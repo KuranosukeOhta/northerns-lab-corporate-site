@@ -8,20 +8,20 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Northerns合同会社 (Northerns LLC)",
-  description: "Northerns合同会社（Northerns LLC）は、多様なプロジェクトを通じて新たな価値を創造するテックカンパニーです。",
+  title: "Northerns（ノーザンズ） - 太田 藏之介",
+  description: "Northerns（ノーザンズ）は、多様なプロジェクトを通じて新たな価値を創造するテックカンパニーです。",
   openGraph: {
-    title: "Northerns合同会社 (Northerns LLC)",
-    description: "Northerns合同会社（Northerns LLC）のコーポレートサイト。SaaS開発、動画翻訳・ローカライズ、3Dバーチャルツアー制作など、多様なプロジェクトで新しい価値を提供します。",
+    title: "Northerns（ノーザンズ） - 太田 藏之介",
+    description: "Northerns（ノーザンズ）の公式サイト。SaaS開発、動画翻訳・ローカライズ、3Dバーチャルツアー制作など、多様なプロジェクトで新しい価値を提供します。",
     url: "https://northerns.vercel.app",
-    siteName: "Northerns合同会社",
+    siteName: "Northerns（ノーザンズ）",
     locale: "ja_JP",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Northerns合同会社 (Northerns LLC)",
-    description: "Northerns合同会社（Northerns LLC）の公式サイト。",
+    title: "Northerns（ノーザンズ） - 太田 藏之介",
+    description: "Northerns（ノーザンズ）の公式サイト。",
   },
 };
 

@@ -39,10 +39,10 @@ export default function Footer() {
                 onClick={scrollToTop}
                 className="font-bold text-base sm:text-lg cursor-pointer min-h-[44px] flex items-center"
               >
-                Northerns合同会社
+                Northerns
               </button>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-center md:text-left">© 2025 Northerns合同会社 (Northerns LLC) All rights reserved.</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 text-center md:text-left">© 2025 Northerns（ノーザンズ） All rights reserved.</p>
           </div>
           <nav className="flex gap-1 sm:gap-4 mt-2 md:mt-0">
             <button 

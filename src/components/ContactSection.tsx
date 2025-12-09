@@ -83,7 +83,7 @@ export default function ContactSection() {
             </h2>
             <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed">
               プロジェクトのご相談、お見積もり依頼、協業のご提案など、お気軽にお問い合わせください。<br className="hidden sm:block" />
-              私たちのチームが、あなたのビジネスの成長をサポートします。
+              私が、あなたのビジネスの成長をサポートします。
             </p>
             
             <div className="space-y-5 sm:space-y-8">
