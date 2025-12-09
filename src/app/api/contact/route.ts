@@ -131,7 +131,7 @@ function createUserEmailHtml(data: {
           お問い合わせありがとうございます
         </h1>
         <p style="color: #d1d5db; margin: 0; font-size: 14px;">
-          Northerns合同会社 (Northerns LLC)
+          Northerns（ノーザンズ）
         </p>
       </div>
       
@@ -141,7 +141,7 @@ function createUserEmailHtml(data: {
         </p>
         
         <p style="color: #374151; font-size: 16px; line-height: 1.8; margin: 0 0 25px 0;">
-          この度は、Northerns合同会社へお問い合わせいただき、誠にありがとうございます。<br>
+          この度は、Northerns（ノーザンズ）へお問い合わせいただき、誠にありがとうございます。<br>
           以下の内容でお問い合わせを受け付けいたしました。
         </p>
         
@@ -187,7 +187,7 @@ function createUserEmailHtml(data: {
       
       <div style="background-color: #1f2937; padding: 30px; text-align: center;">
         <p style="color: #ffffff; font-size: 14px; font-weight: 600; margin: 0;">
-          Northerns合同会社 (Northerns LLC)
+          Northerns（ノーザンズ）
         </p>
         <p style="color: #9ca3af; font-size: 11px; margin: 15px 0 0 0;">
           ※ このメールは自動送信されています。<br>
@@ -293,13 +293,13 @@ export async function POST(request: NextRequest) {
       to: sanitizedData.email,
       from: {
         email: process.env.FROM_EMAIL,
-        name: 'Northerns合同会社',
+        name: 'Northerns（ノーザンズ）',
       },
       replyTo: {
         email: process.env.ADMIN_EMAIL,
-        name: 'Northerns合同会社',
+        name: 'Northerns（ノーザンズ）',
       },
-      subject: '【Northerns合同会社】お問い合わせを受け付けました',
+      subject: '【Northerns】お問い合わせを受け付けました',
       html: createUserEmailHtml(sanitizedData),
     };
 

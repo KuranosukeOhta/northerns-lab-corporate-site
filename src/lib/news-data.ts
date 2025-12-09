@@ -37,8 +37,8 @@ export const NEWS_ITEMS: NewsItem[] = [
     id: '5',
     date: '2024.12.15',
     category: 'Press Release',
-    title: 'Northerns合同会社 設立のお知らせ',
-    summary: '「北の大地から、世界へ」をテーマに、Northerns合同会社を設立いたしました。SaaS開発、動画翻訳・ローカライズ、3Dバーチャルツアー制作、Webシステム開発を通じて、デジタルの力で地域と世界をつなぐ架け橋となります。',
+    title: 'Northerns（ノーザンズ） 開業のお知らせ',
+    summary: '「北の大地から、世界へ」をテーマに、Northerns（ノーザンズ）を開業いたしました。SaaS開発、動画翻訳・ローカライズ、3Dバーチャルツアー制作、Webシステム開発を通じて、デジタルの力で地域と世界をつなぐ架け橋となります。',
     imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2669&auto=format&fit=crop',
   },
   {
