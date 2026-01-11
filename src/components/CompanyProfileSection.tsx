@@ -32,7 +32,7 @@ export default function CompanyProfileSection() {
                 </div>
                 <div>
                   <p className="text-xs sm:text-sm text-gray-500 font-medium">Contact</p>
-                  <p className="text-sm sm:text-base text-gray-900 font-semibold break-all">info@northerns.co.jp</p>
+                  <p className="text-sm sm:text-base text-gray-900 font-semibold break-all">info@northerns.dev</p>
                 </div>
               </div>
             </div>
