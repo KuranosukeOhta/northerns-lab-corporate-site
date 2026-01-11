@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 // レート制限用のメモリストア（本番環境ではRedis等を使用推奨）
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -198,6 +198,17 @@ function createUserEmailHtml(data: {
   `;
 }
 
+// SESクライアントを作成
+function createSESClient() {
+  return new SESClient({
+    region: process.env.AWS_REGION || 'ap-northeast-1',
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    },
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     // レート制限チェック
@@ -210,8 +221,8 @@ export async function POST(request: NextRequest) {
     }
     
     // 環境変数チェック
-    if (!process.env.SENDGRID_API_KEY) {
-      console.error('SENDGRID_API_KEYが設定されていません');
+    if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
+      console.error('AWS認証情報が設定されていません');
       return NextResponse.json(
         { error: 'メール送信の設定が完了していません' },
         { status: 500 }
@@ -233,9 +244,6 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    
-    // SendGrid APIキーを設定
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     
     const body = await request.json();
     const { fullName, email, company, service, message } = body;
@@ -274,39 +282,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 管理者向けメール
-    const adminEmail = {
-      to: process.env.ADMIN_EMAIL,
-      from: {
-        email: process.env.FROM_EMAIL,
-        name: 'Northerns お問い合わせフォーム',
+    // SESクライアント作成
+    const sesClient = createSESClient();
+
+    // 管理者向けメール送信
+    const adminEmailCommand = new SendEmailCommand({
+      Source: `Northerns お問い合わせフォーム <${process.env.FROM_EMAIL}>`,
+      Destination: {
+        ToAddresses: [process.env.ADMIN_EMAIL],
       },
-      subject: `【お問い合わせ】${getServiceLabel(sanitizedData.service)} - ${sanitizedData.fullName}様`,
-      html: createAdminEmailHtml({
-        ...sanitizedData,
-        clientIP,
-      }),
-    };
+      Message: {
+        Subject: {
+          Data: `【お問い合わせ】${getServiceLabel(sanitizedData.service)} - ${sanitizedData.fullName}様`,
+          Charset: 'UTF-8',
+        },
+        Body: {
+          Html: {
+            Data: createAdminEmailHtml({
+              ...sanitizedData,
+              clientIP,
+            }),
+            Charset: 'UTF-8',
+          },
+        },
+      },
+      ReplyToAddresses: [sanitizedData.email],
+    });
 
     // ユーザー向け自動返信メール
-    const userEmail = {
-      to: sanitizedData.email,
-      from: {
-        email: process.env.FROM_EMAIL,
-        name: 'Northerns（ノーザンズ）',
+    const userEmailCommand = new SendEmailCommand({
+      Source: `Northerns（ノーザンズ） <${process.env.FROM_EMAIL}>`,
+      Destination: {
+        ToAddresses: [sanitizedData.email],
       },
-      replyTo: {
-        email: process.env.ADMIN_EMAIL,
-        name: 'Northerns（ノーザンズ）',
+      Message: {
+        Subject: {
+          Data: '【Northerns】お問い合わせを受け付けました',
+          Charset: 'UTF-8',
+        },
+        Body: {
+          Html: {
+            Data: createUserEmailHtml(sanitizedData),
+            Charset: 'UTF-8',
+          },
+        },
       },
-      subject: '【Northerns】お問い合わせを受け付けました',
-      html: createUserEmailHtml(sanitizedData),
-    };
+      ReplyToAddresses: [process.env.ADMIN_EMAIL],
+    });
 
     // 両方のメールを並列送信
     const results = await Promise.allSettled([
-      sgMail.send(adminEmail),
-      sgMail.send(userEmail),
+      sesClient.send(adminEmailCommand),
+      sesClient.send(userEmailCommand),
     ]);
 
     // 結果をチェック
@@ -315,9 +342,7 @@ export async function POST(request: NextRequest) {
 
     // 管理者メールが失敗した場合はエラー
     if (adminResult.status === 'rejected') {
-      const error = adminResult.reason as { response?: { body?: { errors?: Array<{ message: string }> } }; message?: string };
-      console.error('管理者メール送信エラー:', JSON.stringify(error, null, 2));
-      console.error('SendGrid Error Body:', error?.response?.body);
+      console.error('管理者メール送信エラー:', JSON.stringify(adminResult.reason, null, 2));
       return NextResponse.json(
         { error: 'メール送信に失敗しました。しばらく時間をおいてから再試行してください。' },
         { status: 500 }
@@ -326,9 +351,7 @@ export async function POST(request: NextRequest) {
 
     // ユーザーメールが失敗した場合はログに記録（管理者には届いているので成功扱い）
     if (userResult.status === 'rejected') {
-      const error = userResult.reason as { response?: { body?: { errors?: Array<{ message: string }> } }; message?: string };
-      console.error('ユーザー自動返信メール送信エラー:', JSON.stringify(error, null, 2));
-      console.error('SendGrid Error Body:', error?.response?.body);
+      console.error('ユーザー自動返信メール送信エラー:', JSON.stringify(userResult.reason, null, 2));
       // 管理者には届いているので、ユーザーには成功として返す
     }
 
