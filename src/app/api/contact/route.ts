@@ -315,7 +315,9 @@ export async function POST(request: NextRequest) {
 
     // 管理者メールが失敗した場合はエラー
     if (adminResult.status === 'rejected') {
-      console.error('管理者メール送信エラー:', adminResult.reason);
+      const error = adminResult.reason as { response?: { body?: { errors?: Array<{ message: string }> } }; message?: string };
+      console.error('管理者メール送信エラー:', JSON.stringify(error, null, 2));
+      console.error('SendGrid Error Body:', error?.response?.body);
       return NextResponse.json(
         { error: 'メール送信に失敗しました。しばらく時間をおいてから再試行してください。' },
         { status: 500 }
@@ -324,7 +326,9 @@ export async function POST(request: NextRequest) {
 
     // ユーザーメールが失敗した場合はログに記録（管理者には届いているので成功扱い）
     if (userResult.status === 'rejected') {
-      console.error('ユーザー自動返信メール送信エラー:', userResult.reason);
+      const error = userResult.reason as { response?: { body?: { errors?: Array<{ message: string }> } }; message?: string };
+      console.error('ユーザー自動返信メール送信エラー:', JSON.stringify(error, null, 2));
+      console.error('SendGrid Error Body:', error?.response?.body);
       // 管理者には届いているので、ユーザーには成功として返す
     }
 
